@@ -1,10 +1,13 @@
-/* --- VARIABLES Y RESET --- */
+/* =========================================
+   VARIABLES Y RESET
+========================================= */
 :root {
     --bg-color: #F3EFE9; /* Un tono crema general para toda la web */
     --text-color: #2b2b2b;
     --accent-color: #1a1a1a;
     --card-bg: #ffffff;
 }
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -14,10 +17,12 @@ body {
     line-height: 1.6;
 }
 
-/* --- CABECERA-BANNER INTEGRADA --- */
+/* =========================================
+   CABECERA / NAVEGACIÓN
+========================================= */
 .navbar {
-    background-color: var(--bg-color); /* Usamos color sólido, nada de imágenes de fondo */
-    background-image: none; /* Nos aseguramos de quitar el banner gigante */
+    background-color: var(--bg-color); 
+    background-image: none; 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,15 +30,14 @@ body {
     border-bottom: 1px solid rgba(0,0,0,0.05); 
 }
 
-/* Como el logo ahora es el fondo, este contenedor solo empuja el menú al centro */
 .logo-container {
     width: 250px;
 }
 
 .logo {
-    width: 250px; /* Tamaño perfecto para que se lea bien */
+    width: 250px; 
     height: auto;
-    mix-blend-mode: multiply; /* ESTO ES LA MAGIA: funde el fondo de tu jpeg con la web */
+    mix-blend-mode: multiply; 
 }
 
 .menu ul {
@@ -50,6 +54,11 @@ body {
     letter-spacing: 1px;
 }
 
+.header-action {
+    width: 250px;
+    text-align: right;
+}
+
 .btn-black {
     background-color: var(--accent-color);
     color: #fff;
@@ -61,9 +70,10 @@ body {
     letter-spacing: 1px;
 }
 
-/* --- HERO SECTION --- */
+/* =========================================
+   HERO SECTION
+========================================= */
 .hero {
-    /* Usa la foto del Set de Virgen como fondo del banner principal */
     background-image: url('SetVirgen.png'); 
     background-size: cover;
     background-position: center 30%;
@@ -72,12 +82,11 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    margin: 0 40px; /* Márgenes laterales para que respire */
+    margin: 0 40px; 
     border-radius: 12px;
     overflow: hidden;
 }
 
-/* Capa oscura sobre la foto para que el texto blanco se lea bien */
 .hero-overlay {
     background-color: rgba(0, 0, 0, 0.4);
     width: 100%;
@@ -101,12 +110,10 @@ body {
     font-size: 1.2rem;
     font-style: italic;
 }
-.header-action {
-    width: 250px;
-    text-align: right;
-}
 
-/* --- PORTAFOLIO (GRID) --- */
+/* =========================================
+   PORTAFOLIO (GRID)
+========================================= */
 .portfolio {
     padding: 60px 40px;
     max-width: 1400px;
@@ -115,6 +122,7 @@ body {
 
 .grid {
     display: grid;
+    /* La magia de la cuadrícula: fuerza a las tarjetas a ocupar espacio */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
@@ -128,12 +136,12 @@ body {
 }
 
 .card:hover {
-    transform: translateY(-5px); /* Efecto de elevarse al pasar el ratón */
+    transform: translateY(-5px);
 }
 
 .card img {
     width: 100%;
-    height: 300px;
+    height: 350px; /* Aumentado a 350px para que las fotos luzcan bien */
     object-fit: cover;
 }
 
@@ -158,25 +166,27 @@ body {
     font-size: 1.1rem;
 }
 
-/* --- FOOTER --- */
+/* =========================================
+   FOOTER Y WHATSAPP
+========================================= */
 .footer {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 60px 50px;
-    background-color: #fff;
+    background-color: var(--bg-color); /* Crema integrado */
     border-top: 1px solid #eaeaea;
     margin-top: 40px;
+    gap: 30px; /* Espacio extra entre columnas */
 }
 
 .footer-col {
     flex: 1;
-    min-width: 200px;
-    margin-bottom: 20px;
+    min-width: 220px; /* Asegura que las columnas no se encojan demasiado */
 }
 
 .footer-logo {
-    width: 150px;
+    width: 180px; /* Tamaño asegurado para el footer */
     mix-blend-mode: multiply;
     margin-bottom: 15px;
 }
@@ -196,14 +206,41 @@ body {
     font-size: 0.9rem;
 }
 
+/* Bloque Whatsapp */
+.contact-block {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 15px; 
+}
+
+.whatsapp-details {
+    display: flex;
+    align-items: center; 
+    gap: 15px; /* Separación icono/texto */
+}
+
+.whatsapp-icon {
+    font-size: 2.5rem; 
+    color: #25D366; 
+}
+
+.whatsapp-details p {
+    margin: 0;
+    line-height: 1.3;
+    font-size: 0.95rem;
+}
+
 .btn-whatsapp-large {
     display: inline-block;
     background-color: #1a1a1a;
     color: #fff;
-    padding: 15px 25px;
+    padding: 12px 20px;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 4px;
     font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
 }
 
 .copyright {
@@ -214,45 +251,36 @@ body {
     color: #999;
 }
 
-/* --- REGLAS RESPONSIVAS --- */
-@media (max-width: 1024px) {
-    .hero { height: 55vh; margin: 0 20px; }
-    .navbar { padding: 50px 30px; }
-    .footer { padding: 40px 30px; }
-}
-
-@media (max-width: 768px) {
+/* =========================================
+   REGLAS RESPONSIVAS (Móvil y Tablet)
+========================================= */
+@media (max-width: 900px) {
     .navbar {
         flex-direction: column;
-        align-items: center;
-        padding: 28px 18px;
-        gap: 18px;
+        padding: 30px;
+        gap: 20px;
+    }
+    
+    .logo-container, .header-action {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .logo {
+        width: 200px;
     }
 
-    .logo-container { width: 160px; }
-    .logo { width: 70%; max-width: 220px; }
+    .hero {
+        margin: 0 20px;
+        height: 40vh;
+    }
 
-    .menu ul { flex-direction: column; gap: 10px; align-items: center; }
-    .menu a { font-size: 0.95rem; }
-
-    .hero { height: 45vh; margin: 0 16px; }
-    .hero-overlay h1 { font-size: 2rem; }
-    .hero-overlay p { font-size: 1.05rem; }
-
-    .grid { gap: 20px; }
-    .card img { height: 220px; }
-}
-
-@media (max-width: 480px) {
-    .navbar { padding: 20px 12px; }
-    .logo { max-width: 180px; }
-    .menu ul { gap: 8px; }
-    .menu a { font-size: 0.9rem; padding: 6px 8px; }
-
-    .hero { height: 38vh; }
-    .hero-overlay h1 { font-size: 1.6rem; }
-    .hero-overlay p { font-size: 0.95rem; }
-
-    .portfolio { padding: 30px 16px; }
-    .card img { height: 180px; }
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .contact-block {
+        align-items: center; /* Centrar whatsapp en móvil */
+    }
 }
