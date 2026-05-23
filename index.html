@@ -8,11 +8,12 @@
 </head>
 <body>
 
-    <header>
+<header class="navbar">
         <div class="logo-container">
-            <img src="cabecera.jpeg" alt="Paufe Studio Logo" class="logo">
+            <img src="cabecera.jpeg" alt="Paufe Studio" class="logo">
         </div>
-        <nav>
+        
+        <nav class="menu">
             <ul>
                 <li><a href="#inicio">Home</a></li>
                 <li><a href="#filosofia">Filosofía</a></li>
@@ -20,68 +21,109 @@
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
+        
+        <div class="header-action">
+            <a href="https://wa.me/34600000000" class="btn-black">Contacto WhatsApp</a>
+        </div>
     </header>
 
     <section id="inicio" class="hero">
-        <div class="hero-text">
-            <h1>Bienvenidos a<br>Paufe Studio</h1>
-            <p>"En Paufe Studio transformamos tus ideas en creaciones únicas mediante el detalle artesanal. Ofrecemos velas y figuras personalizadas para eventos, ceremonias y ocasiones especiales."</p>
+        <div class="hero-overlay">
+            <h1>BIENVENIDOS A PAUFE STUDIO</h1>
+            <p>Artesanía que ilumina tu hogar con alma</p>
         </div>
     </section>
 
     <section id="portafolio" class="portfolio">
-        <h2>Colección Artesanal</h2>
         <div class="grid">
             
-            <div class="item">
-                <img src="SetVirgen.png" alt="Set Virgen Niña y Portavelas">
-                <h3>Set Virgen Niña en Yeso</h3>
-                <p>25,00 €</p>
-                <a href="#" class="btn-comprar">Comprar</a>
+            <div class="card">
+                <img src="SetVirgen.png" alt="Set de Altar">
+                <div class="card-content">
+                    <h3>Set Virgen Niña en Yeso</h3>
+                    <p>Calma y belleza artesanal. Un espacio diseñado para tu hogar.</p>
+                    <span class="price">25,00 €</span>
+                </div>
             </div>
 
-            <div class="item">
-                <img src="florVela (1).jpg" alt="Velas Primera Comunión">
-                <h3>Velas Primera Comunión</h3>
-                <p>15,00 €</p>
-                <a href="#" class="btn-comprar">Comprar</a>
+            <div class="card">
+                <img src="florVela (1).jpg" alt="Vela Comunión">
+                <div class="card-content">
+                    <h3>Vela de Comunión</h3>
+                    <p>Vela de pilar decorada a mano. Detalle perfecto para ceremonias.</p>
+                    <span class="price">15,00 €</span>
+                </div>
             </div>
 
-            <div class="item">
-                <img src="SagradaFamilia.jpeg" alt="Figura Sagrada Familia">
-                <h3>Figura Sagrada Familia</h3>
-                <p>30,00 €</p>
-                <a href="#" class="btn-comprar">Comprar</a>
+            <div class="card">
+                <img src="florVela (1).jpeg" alt="Vela Peonía">
+                <div class="card-content">
+                    <h3>Vela Flor de Peonía</h3>
+                    <p>Delicada vela escultórica en forma de peonía abierta. Cera natural.</p>
+                    <span class="price">8,00 €</span>
+                </div>
             </div>
 
-            <div class="item">
-                <img src="florVela (1).jpeg" alt="Vela Flor de Peonía">
-                <h3>Vela Flor de Peonía</h3>
-                <p>8,00 €</p>
-                <a href="#" class="btn-comprar">Comprar</a>
-            </div>
-
-            <div class="item">
+            <div class="card">
                 <img src="florVela (2).jpeg" alt="Sachet Botánico">
-                <h3>Sachet Botánico Pétalos</h3>
-                <p>5,00 €</p>
-                <a href="#" class="btn-comprar">Comprar</a>
+                <div class="card-content">
+                    <h3>Sachet Botánico</h3>
+                    <p>Pastilla de cera perfumada con pétalos de rosa para armarios.</p>
+                    <span class="price">5,00 €</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="SagradaFamilia.jpeg" alt="Sagrada Familia">
+                <div class="card-content">
+                    <h3>Figura Sagrada Familia</h3>
+                    <p>Escultura detallada en yeso blanco. Ideal como centro decorativo.</p>
+                    <span class="price">30,00 €</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="CuadroRecordatorioComunion.jpeg" alt="Cuadro Comunión">
+                <div class="card-content">
+                    <h3>Cuadro de Comunión</h3>
+                    <p>Cuadro artesanal en relieve con oración. Un recuerdo único y personalizable.</p>
+                    <span class="price">45,00 €</span> </div>
             </div>
 
         </div>
     </section>
 
-    <section id="filosofia" class="philosophy">
-        <h2>Filosofía de Marca</h2>
-        <p>Entendemos cada proyecto como una pieza única, hecha con dedicación y cuidado. Creemos que el valor de lo artesanal está en los detalles: formulaciones naturales, cero disruptores y texturas moldeadas a mano que transmiten algo especial.</p>
-    </section>
-
-    <footer id="contacto">
-        <h2>Hablemos</h2>
-        <p>hola@paufestudio.com | Madrid</p>
-        <a href="https://wa.me/34600000000" class="btn-contacto">Contactar por WhatsApp</a>
-        <p class="copyright">© 2026 by Paufe Studio.</p>
+    <footer id="contacto" class="footer">
+        <div class="footer-col brand-col">
+            <img src="cabecera.jpeg" alt="Paufe Studio" class="footer-logo">
+            <p>Artesanía que ilumina tu hogar con alma.</p>
+        </div>
+        
+        <div class="footer-col links-col">
+            <h4>Información</h4>
+            <ul>
+                <li><a href="#">Aviso Legal</a></li>
+                <li><a href="#">Política de Privacidad</a></li>
+                <li><a href="#">Envíos y Devoluciones</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-col contact-col">
+            <h4>Contacto</h4>
+            <p>Email: hola@paufestudio.com</p>
+            <p>Instagram: @paufestudio</p>
+            <p>Taller en San Sebastián de los Reyes</p>
+        </div>
+        
+        <div class="footer-col action-col">
+            <a href="https://wa.me/34600000000" class="btn-whatsapp-large">
+                 WhatsApp: +34 600 00 00 00
+            </a>
+        </div>
     </footer>
+    <div class="copyright">
+        <p>© 2026 - Hecho con amor por Paufe Studio</p>
+    </div>
 
 </body>
 </html>

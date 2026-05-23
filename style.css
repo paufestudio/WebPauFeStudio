@@ -1,175 +1,258 @@
-/* RESET BÁSICO */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* --- VARIABLES Y RESET --- */
+:root {
+    --bg-color: #F3EFE9; /* Un tono crema general para toda la web */
+    --text-color: #2b2b2b;
+    --accent-color: #1a1a1a;
+    --card-bg: #ffffff;
 }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    color: #2b2b2b;
-    background-color: #ffffff; /* Fondo blanco puro */
-    line-height: 1.8;
-    text-align: center; /* Centramos todo al estilo Barrow */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
-/* CABECERA Y NAVEGACIÓN */
-header {
-    padding: 40px 20px 20px;
+/* --- CABECERA-BANNER INTEGRADA --- */
+.navbar {
+    background-color: var(--bg-color); /* Usamos color sólido, nada de imágenes de fondo */
+    background-image: none; /* Nos aseguramos de quitar el banner gigante */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px; 
+    border-bottom: 1px solid rgba(0,0,0,0.05); 
 }
 
+/* Como el logo ahora es el fondo, este contenedor solo empuja el menú al centro */
 .logo-container {
-    margin-bottom: 20px;
+    width: 250px;
 }
 
 .logo {
-    max-width: 250px; /* Tamaño del logo */
+    width: 250px; /* Tamaño perfecto para que se lea bien */
     height: auto;
+    mix-blend-mode: multiply; /* ESTO ES LA MAGIA: funde el fondo de tu jpeg con la web */
 }
 
-nav ul {
+.menu ul {
     list-style: none;
     display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 20px;
+    gap: 30px;
 }
 
-nav a {
+.menu a {
     text-decoration: none;
-    color: #2b2b2b;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
+    color: var(--text-color);
     text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
 }
 
-nav a:hover {
-    color: #888;
+.btn-black {
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 12px 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    letter-spacing: 1px;
 }
 
-/* SECCIÓN HERO (BIENVENIDA) */
+/* --- HERO SECTION --- */
 .hero {
-    padding: 80px 20px;
-    background-color: #faf9f7; /* Un tono crema ultra suave */
-    margin-bottom: 60px;
+    /* Usa la foto del Set de Virgen como fondo del banner principal */
+    background-image: url('SetVirgen.png'); 
+    background-size: cover;
+    background-position: center 30%;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 0 40px; /* Márgenes laterales para que respire */
+    border-radius: 12px;
+    overflow: hidden;
 }
 
-.hero-text {
-    max-width: 800px;
-    margin: 0 auto;
+/* Capa oscura sobre la foto para que el texto blanco se lea bien */
+.hero-overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
 }
 
-.hero h1 {
+.hero-overlay h1 {
     font-size: 2.5rem;
     font-weight: 400;
-    margin-bottom: 20px;
     letter-spacing: 2px;
+    margin-bottom: 10px;
 }
 
-.hero p {
-    font-size: 1.1rem;
-    color: #555;
+.hero-overlay p {
+    font-size: 1.2rem;
     font-style: italic;
 }
-
-/* PORTAFOLIO / GRID DE PRODUCTOS */
-.portfolio {
-    padding: 0 40px 80px;
-    max-width: 1200px;
-    margin: 0 auto;
+.header-action {
+    width: 250px;
+    text-align: right;
 }
 
-.portfolio h2 {
-    font-weight: 300;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 50px;
+/* --- PORTAFOLIO (GRID) --- */
+.portfolio {
+    padding: 60px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 50px;
+    gap: 30px;
 }
 
-.item img {
+.card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Efecto de elevarse al pasar el ratón */
+}
+
+.card img {
     width: 100%;
-    height: 350px; /* Fijamos altura para que queden alineadas */
-    object-fit: cover; /* Recorta la imagen con elegancia si no cuadra la proporción */
-    transition: opacity 0.3s ease;
+    height: 300px;
+    object-fit: cover;
 }
 
-.item img:hover {
-    opacity: 0.85; /* Pequeño efecto al pasar el ratón */
+.card-content {
+    padding: 20px;
+    text-align: left;
 }
 
-.item h3 {
-    font-size: 1rem;
-    font-weight: 400;
-    margin: 15px 0 5px;
+.card-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
 }
 
-.item p {
-    color: #777;
+.card-content p {
+    font-size: 0.9rem;
+    color: #666;
     margin-bottom: 15px;
 }
 
-/* BOTONES */
-.btn-comprar, .btn-contacto {
-    display: inline-block;
-    padding: 10px 25px;
-    background-color: transparent;
-    color: #2b2b2b;
-    border: 1px solid #2b2b2b;
-    text-decoration: none;
-    font-size: 0.8rem;
+.price {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* --- FOOTER --- */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 60px 50px;
+    background-color: #fff;
+    border-top: 1px solid #eaeaea;
+    margin-top: 40px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 20px;
+}
+
+.footer-logo {
+    width: 150px;
+    mix-blend-mode: multiply;
+    margin-bottom: 15px;
+}
+
+.footer-col h4 {
+    margin-bottom: 15px;
     text-transform: uppercase;
+    font-size: 0.9rem;
     letter-spacing: 1px;
-    transition: all 0.3s;
 }
 
-.btn-comprar:hover, .btn-contacto:hover {
-    background-color: #2b2b2b;
-    color: #ffffff;
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 8px; }
+.footer-col ul li a, .footer-col p {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
 }
 
-/* FILOSOFÍA */
-.philosophy {
-    background-color: #faf9f7;
-    padding: 80px 20px;
-}
-
-.philosophy h2 {
-    font-weight: 300;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-}
-
-.philosophy p {
-    max-width: 700px;
-    margin: 0 auto;
-    color: #555;
-}
-
-/* FOOTER */
-footer {
-    padding: 60px 20px;
-}
-
-footer h2 {
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin-bottom: 10px;
-}
-
-footer p {
-    margin-bottom: 25px;
-    color: #555;
+.btn-whatsapp-large {
+    display: inline-block;
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
 }
 
 .copyright {
-    margin-top: 50px;
-    font-size: 0.75rem;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    font-size: 0.8rem;
     color: #999;
+}
+
+/* --- REGLAS RESPONSIVAS --- */
+@media (max-width: 1024px) {
+    .hero { height: 55vh; margin: 0 20px; }
+    .navbar { padding: 50px 30px; }
+    .footer { padding: 40px 30px; }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 28px 18px;
+        gap: 18px;
+    }
+
+    .logo-container { width: 160px; }
+    .logo { width: 70%; max-width: 220px; }
+
+    .menu ul { flex-direction: column; gap: 10px; align-items: center; }
+    .menu a { font-size: 0.95rem; }
+
+    .hero { height: 45vh; margin: 0 16px; }
+    .hero-overlay h1 { font-size: 2rem; }
+    .hero-overlay p { font-size: 1.05rem; }
+
+    .grid { gap: 20px; }
+    .card img { height: 220px; }
+}
+
+@media (max-width: 480px) {
+    .navbar { padding: 20px 12px; }
+    .logo { max-width: 180px; }
+    .menu ul { gap: 8px; }
+    .menu a { font-size: 0.9rem; padding: 6px 8px; }
+
+    .hero { height: 38vh; }
+    .hero-overlay h1 { font-size: 1.6rem; }
+    .hero-overlay p { font-size: 0.95rem; }
+
+    .portfolio { padding: 30px 16px; }
+    .card img { height: 180px; }
 }
