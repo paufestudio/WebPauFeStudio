@@ -9,6 +9,78 @@
     
     <link rel="stylesheet" href="style.css"> 
 </head>
+
+<script>
+    console.log("Iniciando motor del slider...");
+    const heroSection = document.getElementById('inicio');
+    
+    // Lista de imágenes (OJO: deben llamarse exactamente así en tu carpeta)
+    const imagenesHero = [
+        'SetVirgen.png',
+        'SetAcanalado.jpeg',
+        'AmbientadoresSoja.jpeg',
+        'BandejasYesoBlancas.jpeg'
+    ];
+    
+    let indiceActual = 0;
+    let sliderTimer;
+    
+    // 1. Crear el contenedor de los puntos
+    const controlsContainer = document.createElement('div');
+    controlsContainer.className = 'hero-controls';
+    heroSection.appendChild(controlsContainer);
+
+    // 2. Crear los dots interactivos
+    imagenesHero.forEach((ruta, index) => {
+        const dot = document.createElement('button');
+        dot.className = 'hero-dot';
+        if (index === 0) dot.classList.add('active');
+        
+        dot.addEventListener('click', () => {
+            cambiarImagen(index);
+            reiniciarSlider();
+        });
+        
+        controlsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.hero-dot');
+
+    // 3. Función que cambia el fondo
+    function cambiarImagen(indice) {
+        indiceActual = indice;
+        // Forzamos el cambio de estilo directamente
+        heroSection.style.backgroundImage = `url('${imagenesHero[indiceActual]}')`;
+        
+        // Actualizamos los puntitos
+        dots.forEach(d => d.classList.remove('active'));
+        dots[indiceActual].classList.add('active');
+    }
+
+    // 4. Función de rotación automática
+    function rotarFondoHero() {
+        let siguienteIndice = (indiceActual + 1) % imagenesHero.length;
+        cambiarImagen(siguienteIndice);
+    }
+
+    // 5. Control del tiempo (5 segundos)
+    function startSlider() {
+        clearInterval(sliderTimer); // Limpiamos por si acaso
+        sliderTimer = setInterval(rotarFondoHero, 5000); 
+    }
+
+    function reiniciarSlider() {
+        startSlider();
+    }
+
+    // ¡Arrancamos!
+    startSlider();
+
+    // 6. Pausa al poner el ratón encima
+    heroSection.addEventListener('mouseenter', () => clearInterval(sliderTimer));
+    heroSection.addEventListener('mouseleave', startSlider);
+</script>
+
 <body>
 
 <header class="navbar">
@@ -58,7 +130,14 @@
             <span class="file-price">6,99 €</span>
         </div>
     </div>
-
+    <div class="file-card">
+        <img src="AmbientadoreYesoFlorColores.jpeg" alt="Ambientador Yeso Flor">
+        <div class="file-info">
+            <h4>Ambientador Yeso con Flor</h4>
+            <span class="file-price">6,99 €</span>
+        </div>
+    </div>
+    
     <div class="file-card">
         <img src="AmbientadoresYesoHojaSeca.jpeg" alt="Ambientador Yeso Hoja Seca">
         <div class="file-info">
@@ -79,7 +158,7 @@
         <img src="BandejaYesoHojaSEca.jpeg" alt="Bandeja Hoja Seca">
         <div class="file-info">
             <h4>Bandeja Yeso Hoja Seca</h4>
-            <span class="file-price">7,99 €</span>
+            <span class="file-price">10,99 €</span>
         </div>
     </div>
 
@@ -87,7 +166,7 @@
         <img src="BandejaYesoRectangularServilleta.jpeg" alt="Bandeja Rectangular">
         <div class="file-info">
             <h4>Bandeja Rectangular con Servilleta</h4>
-            <span class="file-price">7,99 €</span>
+            <span class="file-price">9,99 €</span>
         </div>
     </div>
 
@@ -95,7 +174,7 @@
         <img src="BandejaYesoServilletaModelo1.jpeg" alt="Bandeja Modelo 1">
         <div class="file-info">
             <h4>Bandeja Servilleta Modelo 1</h4>
-            <span class="file-price">7,99 €</span>
+            <span class="file-price">10,99 €</span>
         </div>
     </div>
 
@@ -103,7 +182,7 @@
         <img src="BandejaYesoServilletaModelo2.jpeg" alt="Bandeja Modelo 2">
         <div class="file-info">
             <h4>Bandeja Servilleta Modelo 2</h4>
-            <span class="file-price">7,99 €</span>
+            <span class="file-price">10,99 €</span>
         </div>
     </div>
 
@@ -159,7 +238,7 @@
         <img src="VasoFlorVela.jpeg" alt="Vaso Flor Vela">
         <div class="file-info">
             <h4>Vaso con Flor Vela</h4>
-            <span class="file-price">7,99 €</span>
+            <span class="file-price">10,99 €</span>
         </div>
     </div>
 
@@ -167,7 +246,7 @@
         <img src="VasoVela.jpeg" alt="Vaso Vela">
         <div class="file-info">
             <h4>Vaso con Vela</h4>
-            <span class="file-price">7,99 €</span>
+            <span class="file-price">12,99 €</span>
         </div>
     </div>
 
@@ -175,7 +254,7 @@
         <img src="Bombonera Estriada Botánica.jpeg" alt="Bombonera Botánica">
         <div class="file-info">
             <h4>Bombonera Estriada Botánica</h4>
-            <span class="file-price">20,00 €</span>
+            <span class="file-price">16,00 €</span>
         </div>
     </div>
 
@@ -184,6 +263,14 @@
         <div class="file-info">
             <h4>Cuenco Decorativo</h4>
             <span class="file-price">12,00 €</span>
+        </div>
+    </div>
+
+    <div class="file-card">
+        <img src="Bombonera Estriada Botánica1.jpeg" alt="Bombonera Botánica 1">
+        <div class="file-info">
+            <h4>Bombonera Estriada Botánica 2</h4>
+            <span class="file-price">16,00 €</span>
         </div>
     </div>
 
@@ -211,7 +298,13 @@
             <span class="file-price">6,99 €</span>
         </div>
     </div>
-
+    <div class="file-card">
+        <img src="AmbientadoresSojaFloresSecas2.jpeg" alt="Ambientador Yeso Flor">
+        <div class="file-info">
+            <h4>Ambientador Yeso con Flor</h4>
+            <span class="file-price">6,99 €</span>
+        </div>
+    </div>
     <div class="file-card">
         <img src="VelaSoja.jpeg" alt="Vela Soja">
         <div class="file-info">
@@ -225,6 +318,30 @@
         <div class="file-info">
             <h4>Vela de Soja con Flor</h4>
             <span class="file-price">5,99 €</span>
+        </div>
+    </div>
+  
+</div>
+
+<!-- ================= PRODUCTOS ESPECIALES ================= -->
+
+<h2 class="category-title">Productos para Momentos Especiales</h2>
+
+<div class="products-grid">
+
+    <div class="file-card">
+        <img src="velasBoda.jpg" alt="Vela Boda">
+        <div class="file-info">
+            <h4>Vela Boda</h4>
+            <span class="file-price">35,00 €</span>
+        </div>
+    </div>
+
+    <div class="file-card">
+        <img src="BandejaVelaSojaConNombre.jpeg" alt="Bandeja Vela Soja Con Nombre">
+        <div class="file-info">
+            <h4>Bandeja Vela Soja Con Nombre</h4>
+            <span class="file-price">16,00 €</span>
         </div>
     </div>
 
