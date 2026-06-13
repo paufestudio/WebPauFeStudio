@@ -6,16 +6,17 @@
     <title>Paufe Studio | Velas, Yeso y Flores</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
     <link rel="stylesheet" href="style.css"> 
 </head>
 
 <script>
-    console.log("Iniciando motor del slider...");
+    // ==========================================
+    // 1. MOTOR DEL CARRUSEL (SLIDER DESLIZANTE)
+    // ==========================================
     const heroSection = document.getElementById('inicio');
+    const carruselPistas = document.getElementById('carrusel-pistas');
     
-    // Lista de imágenes (OJO: deben llamarse exactamente así en tu carpeta)
-    const imagenesHero = [
+    const imagenes = [
         'SetVirgen.png',
         'SetAcanalado.jpeg',
         'AmbientadoresSoja.jpeg',
@@ -25,65 +26,73 @@
     let indiceActual = 0;
     let sliderTimer;
     
-    // 1. Crear el contenedor de los puntos
-    const controlsContainer = document.createElement('div');
-    controlsContainer.className = 'hero-controls';
-    heroSection.appendChild(controlsContainer);
-
-    // 2. Crear los dots interactivos
-    imagenesHero.forEach((ruta, index) => {
-        const dot = document.createElement('button');
-        dot.className = 'hero-dot';
-        if (index === 0) dot.classList.add('active');
-        
-        dot.addEventListener('click', () => {
-            cambiarImagen(index);
-            reiniciarSlider();
-        });
-        
-        controlsContainer.appendChild(dot);
-    });
-
-    const dots = document.querySelectorAll('.hero-dot');
-
-    // 3. Función que cambia el fondo
     function cambiarImagen(indice) {
         indiceActual = indice;
-        // Forzamos el cambio de estilo directamente
-        heroSection.style.backgroundImage = `url('${imagenesHero[indiceActual]}')`;
+        carruselPistas.style.transform = `translateX(-${indiceActual * 100}%)`;
         
-        // Actualizamos los puntitos
+        const dots = document.querySelectorAll('.hero-dot');
         dots.forEach(d => d.classList.remove('active'));
-        dots[indiceActual].classList.add('active');
+        if(dots[indiceActual]) dots[indiceActual].classList.add('active');
     }
 
-    // 4. Función de rotación automática
-    function rotarFondoHero() {
-        let siguienteIndice = (indiceActual + 1) % imagenesHero.length;
-        cambiarImagen(siguienteIndice);
-    }
-
-    // 5. Control del tiempo (5 segundos)
     function startSlider() {
-        clearInterval(sliderTimer); // Limpiamos por si acaso
-        sliderTimer = setInterval(rotarFondoHero, 5000); 
+        clearInterval(sliderTimer);
+        sliderTimer = setInterval(() => {
+            indiceActual = (indiceActual + 1) % imagenes.length;
+            cambiarImagen(indiceActual);
+        }, 5000);
     }
 
-    function reiniciarSlider() {
-        startSlider();
-    }
-
-    // ¡Arrancamos!
-    startSlider();
-
-    // 6. Pausa al poner el ratón encima
     heroSection.addEventListener('mouseenter', () => clearInterval(sliderTimer));
     heroSection.addEventListener('mouseleave', startSlider);
+
+    startSlider();
+
+    // ==========================================
+    // 2. MOTOR DEL LIGHTBOX (GALERÍA)
+    // ==========================================
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('.file-card img').forEach(img => {
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add('active');
+        });
+    });
+
+    const cerrarLightbox = () => lightbox.classList.remove('active');
+    lightboxClose.addEventListener('click', cerrarLightbox);
+    
+    lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) cerrarLightbox();
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') cerrarLightbox();
+    });
+
+    console.log("Scripts cargados correctamente.");
+
+    // ==========================================
+    // 3. CAMBIAR MINI-SLIDES (FLECHAS INTERACTIVAS)
+    // ==========================================
+    function cambiarSlide(id, dir) {
+        const container = document.getElementById(id);
+        const images = container.querySelectorAll('img');
+        let activeIndex = Array.from(images).findIndex(i => i.classList.contains('active'));
+        
+        images[activeIndex].classList.remove('active');
+        let nextIndex = (activeIndex + dir + images.length) % images.length;
+        images[nextIndex].classList.add('active');
+    }
 </script>
 
 <body>
 
-<header class="navbar">
+    <header class="navbar">
         <div class="logo-container">
             <img src="cabecera-removebg.png" alt="Paufe Studio" class="logo">
         </div>
@@ -103,6 +112,9 @@
     </header>
 
     <section id="inicio" class="hero">
+        <div class="carousel-slide" id="carrusel-pistas">
+            <img src="SetVirgen.png" alt="Set Virgen">
+        </div>
         <div class="hero-overlay">
             <h1>BIENVENIDOS A PAUFE STUDIO</h1>
             <p>Artesanía que ilumina tu hogar con alma</p>
@@ -117,455 +129,498 @@
         <nav class="products-nav">
             <h3>Categorías</h3>
             <ul>
-                <li><a href="#yesos">Yesos</a></li>
+                <li>
+                    <a href="#yesos">Yesos</a>
+                    <ul style="list-style: none; padding-left: 15px; font-size: 0.9em;">
+                        <li><a href="#yesos-ambientadores">- Ambientadores</a></li>
+                        <li><a href="#yesos-bandejas">- Bandejas y Platos</a></li>
+                        <li><a href="#yesos-figuras">- Figuras y Sets</a></li>
+                    </ul>
+                </li>
                 <li><a href="#soja">Ambientadores Soja</a></li>
                 <li><a href="#especiales">Momentos Especiales</a></li>
             </ul>
         </nav>
     </div>
 
-    <!-- CONTENEDOR PRINCIPAL DE CONTENIDO -->
+    <!-- CONTENEDOR PRINCIPAL DE PRODUCTOS -->
     <div class="main-content">
 
-<!-- ================= YESOS ================= -->
+        <!-- ======================================================================= -->
+        <!-- SECCIÓN 1: YESOS                                                        -->
+        <!-- ======================================================================= -->
+        <h2 class="category-title" id="yesos">Yesos</h2>
 
-<h2 class="category-title" id="yesos">Yesos</h2>
+        <!-- Subcategoría: Ambientadores de Yeso -->
+        <h3 class="subcategory-title" id="yesos-ambientadores" style="margin: 30px 0 15px 20px; color: #333; font-size: 1.5rem;">Ambientadores de Yeso</h3>
+        <div class="products-grid">
 
-<div class="products-grid">
+            <div class="file-card">
+                <img src="AmbientadoresYeso.jpeg" alt="Ambientador Yeso Blanco">
+                <div class="file-info">
+                    <h4>Ambientador Yeso Blanco con Difusor</h4>
+                    <p class="product-description">Ambientador artesanal de yeso con difusor incorporado. Perfecto para habitaciones y espacios pequeños.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 8 cm de alto</p>
+                    <span class="file-price">5,50 €</span>
+                </div>
+            </div>
 
-    <div class="file-card">
-        <img src="AmbientadoresYeso.jpeg" alt="Ambientador Yeso Blanco">
-        <div class="file-info">
-            <h4>Ambientador Yeso Blanco con Difusor</h4>
-            <p class="product-description">Ambientador artesanal de yeso con difusor incorporado. Perfecto para habitaciones y espacios pequeños.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 8 cm de alto</p>
-            <span class="file-price">4,99 €</span>
+            <div class="file-card">
+                <img src="AmbientadoresYesoFlor.jpeg" alt="Ambientador Yeso Flor">
+                <div class="file-info">
+                    <h4>Ambientador Yeso con Flor</h4>
+                    <p class="product-description">Ambientador de yeso decorado con flores naturales secas. Añade un toque elegante a cualquier rincón.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 10 cm de alto</p>
+                    <span class="file-price">7,50 €</span>
+                </div>
+            </div>
+
+            <div class="file-card">
+                <img src="AmbientadoreYesoFlorColores.jpeg" alt="Ambientador Yeso Flor Colores">
+                <div class="file-info">
+                    <h4>Ambientador Yeso con Flor Colores</h4>
+                    <p class="product-description">Ambientador de yeso con flores naturales en tonos variados. Diseño vibrante y atractivo.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 10 cm de alto</p>
+                    <span class="file-price">7,50 €</span>
+                </div>
+            </div>
+
+            <!-- CARRUSEL: Ambientadores Hoja Seca (Modelos combinados) -->
+            <div class="file-card product-card">
+                <div class="carousel-container" id="carousel-hoja-seca">
+                    <div class="carousel-inner">
+                        <img src="AmbientadoresYesoHojaSeca.jpeg" class="active" alt="Ambientador Yeso Hoja Seca - Vista 1">
+                        <img src="AmbientadoresYesoHojaSeca1.jpeg" alt="Ambientador Yeso Hoja Seca - Vista 2">
+                    </div>
+                    <button class="nav-btn prev" onclick="cambiarSlide('carousel-hoja-seca', -1)">&#10094;</button>
+                    <button class="nav-btn next" onclick="cambiarSlide('carousel-hoja-seca', 1)">&#10095;</button>
+                </div>
+                <div class="file-info">
+                    <h4>Ambientador Yeso con Hoja Seca</h4>
+                    <p class="product-description">Ambientador de yeso blanco decorado con una hoja seca natural. Estilo minimalista y natural con variantes de diseño.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 9 cm de alto</p>
+                    <span class="file-price">6,50 €</span>
+                </div>
+            </div>
+
+            <!-- CARRUSEL: Ambientadores Estándar (Modelos 2 y 3 combinados) -->
+            <div class="file-card product-card">
+                <div class="carousel-container" id="carousel-ambientadores-modelos">
+                    <div class="carousel-inner">
+                        <img src="AmbientadoresYeso2.jpeg" class="active" alt="Ambientador Yeso - Modelo 2">
+                        <img src="AmbientadoresYeso3.jpeg" alt="Ambientador Yeso - Modelo 3">
+                    </div>
+                    <button class="nav-btn prev" onclick="cambiarSlide('carousel-ambientadores-modelos', -1)">&#10094;</button>
+                    <button class="nav-btn next" onclick="cambiarSlide('carousel-ambientadores-modelos', 1)">&#10095;</button>
+                </div>
+                <div class="file-info">
+                    <h4>Ambientador Yeso (Modelos Múltiples)</h4>
+                    <p class="product-description">Ambientadores de yeso en modelos de diseño exclusivo. Complementa perfectamente cualquier rincón de tu hogar.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 8 cm de alto</p>
+                    <span class="file-price">5,99 €</span>
+                </div>
+            </div>
+
+            <div class="file-card">
+                <img src="AmbientadorYeso.jpeg" alt="Ambientador Yeso">
+                <div class="file-info">
+                    <h4>Ambientador Yeso Simple</h4>
+                    <p class="product-description">Ambientador de yeso blanco puro. Diseño clásico que encaja en cualquier estilo de decoración.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 8 cm de alto</p>
+                    <span class="file-price">5,99 €</span>
+                </div>
+            </div>
+
+            <div class="file-card">
+                <img src="AmbientadorArmarios.jpeg" alt="Ambientador Armarios">
+                <div class="file-info">
+                    <h4>Ambientador Armarios</h4>
+                    <p class="product-description">Ambientador de yeso especialmente diseñado para armarios y espacios cerrados. Aroma duradero.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 7 cm de alto</p>
+                    <span class="file-price">5,99 €</span>
+                </div>
+            </div>
+
+            <!-- PRODUCTO NOVEDAD: Ambientador para Coche con 3 imágenes -->
+    <!-- PRODUCTO NOVEDAD: Ambientador para Coche (Solo 2 imágenes) -->
+    <div class="file-card product-card" style="position: relative;">
+        <span style="position: absolute; top: 15px; left: 15px; background-color: #d4af37; color: #fff; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; letter-spacing: 1px; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">Novedad</span>
+        <div class="carousel-container" id="carousel-coche">
+            <div class="carousel-inner">
+                <!-- Añadida la clase 'active' a la primera imagen para que funcione el script -->
+                <img src="AmbientadorYesoCoche1.jpeg" class="active" alt="Vista frontal coche">
+                <img src="AmbientadorYesoCoche2.jpeg" alt="Vista clip coche">
+            </div>
+            <button class="nav-btn prev" onclick="cambiarSlide('carousel-coche', -1)">&#10094;</button>
+            <button class="nav-btn next" onclick="cambiarSlide('carousel-coche', 1)">&#10095;</button>
         </div>
-    </div>
-
-    <div class="file-card">
-        <img src="AmbientadoresYesoFlor.jpeg" alt="Ambientador Yeso Flor">
         <div class="file-info">
-            <h4>Ambientador Yeso con Flor</h4>
-            <p class="product-description">Ambientador de yeso decorado con flores naturales secas. Añade un toque elegante a cualquier rincón.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 10 cm de alto</p>
-            <span class="file-price">6,99 €</span>
-        </div>
-    </div>
-    <div class="file-card">
-        <img src="AmbientadoreYesoFlorColores.jpeg" alt="Ambientador Yeso Flor Colores">
-        <div class="file-info">
-            <h4>Ambientador Yeso con Flor Colores</h4>
-            <p class="product-description">Ambientador de yeso con flores naturales en tonos variados. Diseño vibrante y atractivo.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 10 cm de alto</p>
-            <span class="file-price">6,99 €</span>
-        </div>
-    </div>
-    
-    <div class="file-card">
-        <img src="AmbientadoresYesoHojaSeca.jpeg" alt="Ambientador Yeso Hoja Seca">
-        <div class="file-info">
-            <h4>Ambientador Yeso con Hoja Seca</h4>
-            <p class="product-description">Ambientador de yeso blanco decorado con una hoja seca natural. Estilo minimalista y natural.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 9 cm de alto</p>
-            <span class="file-price">5,99 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="BandejasYesoBlancas.jpeg" alt="Bandeja Yeso Blanca">
-        <div class="file-info">
-            <h4>Bandeja Yeso Blanca</h4>
-            <p class="product-description">Bandeja de yeso blanco artesanal. Ideal para organizar objetos pequeños o como elemento decorativo.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 20 cm × 15 cm</p>
-            <span class="file-price">5,99 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="BandejaYesoHojaSEca.jpeg" alt="Bandeja Hoja Seca">
-        <div class="file-info">
-            <h4>Bandeja Yeso Hoja Seca</h4>
-            <p class="product-description">Bandeja de yeso con detalle de hoja seca natural. Pieza elegante y funcional para cualquier espacio.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 22 cm × 17 cm</p>
-            <span class="file-price">10,99 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="BandejaYesoRectangularServilleta.jpeg" alt="Bandeja Rectangular">
-        <div class="file-info">
-            <h4>Bandeja Rectangular con Servilleta</h4>
-            <p class="product-description">Bandeja rectangular de yeso con diseño de servilleta integrado. Perfecta para la mesa del comedor.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 25 cm × 15 cm</p>
-            <span class="file-price">9,99 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="BandejaYesoServilletaModelo1.jpeg" alt="Bandeja Modelo 1">
-        <div class="file-info">
-            <h4>Bandeja Servilleta Modelo 1</h4>
-            <p class="product-description">Bandeja de yeso con relieve de servilleta. Diseño clásico y sofisticado.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 24 cm × 14 cm</p>
-            <span class="file-price">10,99 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="BandejaYesoServilletaModelo2.jpeg" alt="Bandeja Modelo 2">
-        <div class="file-info">
-            <h4>Bandeja Servilleta Modelo 2</h4>
-            <p class="product-description">Bandeja de yeso con patrón de servilleta en modelo 2. Elegancia y practicidad en una pieza.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 24 cm × 14 cm</p>
-            <span class="file-price">10,99 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="plato.jpeg" alt="Plato Sencillo">
-        <div class="file-info">
-            <h4>Plato Sencillo</h4>
-            <p class="product-description">Plato de yeso blanco con acabado sencillo. Ideal como base para velas o como elemento decorativo.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 20 cm de diámetro</p>
-            <span class="file-price">5,99 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="PlatoHoja.jpeg" alt="Plato Hoja">
-        <div class="file-info">
-            <h4>Plato Hoja</h4>
-            <p class="product-description">Plato de yeso con textura de hoja natural. Añade un toque de naturaleza a tu decoración.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 20 cm de diámetro</p>
-            <span class="file-price">5,99 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="platoMoto.jpeg" alt="Plato Moto">
-        <div class="file-info">
-            <h4>Plato Moto</h4>
-            <p class="product-description">Plato de yeso con detalle de patrón moto. Diseño único y original para decoradores aventureros.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 22 cm de diámetro</p>
-            <span class="file-price">10,99 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="SetAcanalado.jpeg" alt="Set Vaso Estriado">
-        <div class="file-info">
-            <h4>Set Acanalado</h4>
-            <p class="product-description">Set de vaso de yeso con acabado acanalado. Incluye vela aromática perfumada.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 10 cm de alto (vaso)</p>
-            <span class="file-price">14,00 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="SetVirgen.png" alt="Set Vaso con Virgen">
-        <div class="file-info">
-            <h4>Set Virgen</h4>
-            <p class="product-description">Set exclusivo de yeso con imagen de Virgen. Pieza especial para espacios sagrados o decorativos.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 12 cm de alto (vaso)</p>
-            <span class="file-price">25,00 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="VasoYeso.jpeg" alt="Vaso Yeso">
-        <div class="file-info">
-            <h4>Vaso Simple Estriado</h4>
-            <p class="product-description">Vaso de yeso con textura estriada. Perfecto como base para velas aromáticas.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 9 cm de alto</p>
+            <h4>Ambientador Yeso para Coche</h4>
+            <p class="product-description">Flor de yeso diseñada especialmente para el coche con sistema de clip. Fórmula artesanal resistente al calor.</p>
             <span class="file-price">6,00 €</span>
         </div>
     </div>
 
-    <div class="file-card">
-        <img src="VasoFlorVela.jpeg" alt="Vaso Flor Vela">
-        <div class="file-info">
-            <h4>Vaso con Flor Vela</h4>
-            <p class="product-description">Vaso de yeso decorado con flor seca natural. Incluye vela aromática de soja.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 11 cm de alto</p>
-            <span class="file-price">10,99 €</span>
         </div>
-    </div>
 
-    <div class="file-card">
-        <img src="VasoVela.jpeg" alt="Vaso Vela">
-        <div class="file-info">
-            <h4>Vaso con Vela</h4>
-            <p class="product-description">Vaso de yeso blanco con vela aromática de soja. Aroma envolvente y decoración elegante.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 12 cm de alto</p>
-            <span class="file-price">12,99 €</span>
-        </div>
-    </div>
+        <!-- Subcategoría: Bandejas y Platos -->
+        <h3 class="subcategory-title" id="yesos-bandejas" style="margin: 40px 0 15px 20px; color: #333; font-size: 1.5rem;">Bandejas y Platos</h3>
+        <div class="products-grid">
 
-    <div class="file-card">
-        <img src="Bombonera Estriada Botánica.jpeg" alt="Bombonera Botánica">
-        <div class="file-info">
-            <h4>Bombonera Estriada Botánica</h4>
-            <p class="product-description">Bombonera de yeso con acabado estriado y detalles botánicos. Ideal para guardar pequeños tesoros.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 15 cm de alto</p>
-            <span class="file-price">16,00 €</span>
-        </div>
-    </div>
+            <div class="file-card">
+                <img src="BandejasYesoBlancas.jpeg" alt="Bandeja Yeso Blanca">
+                <div class="file-info">
+                    <h4>Bandeja Yeso Blanca</h4>
+                    <p class="product-description">Bandeja de yeso blanco artesanal. Ideal para organizar objetos pequeños o como elemento decorativo.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 20 cm × 15 cm</p>
+                    <span class="file-price">5,99 €</span>
+                </div>
+            </div>
 
-    <div class="file-card">
-        <img src="cuenco.jpeg" alt="Cuenco Decorativo">
-        <div class="file-info">
-            <h4>Cuenco Decorativo</h4>
-            <p class="product-description">Cuenco de yeso artesanal. Perfecto para decorar o guardar objetos pequeños.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 18 cm de diámetro × 8 cm de alto</p>
-            <span class="file-price">8,00 €</span>
-        </div>
-    </div>
+            <div class="file-card">
+                <img src="BandejaYesoHojaSEca.jpeg" alt="Bandeja Hoja Seca">
+                <div class="file-info">
+                    <h4>Bandeja Yeso Hoja Seca</h4>
+                    <p class="product-description">Bandeja de yeso con detalle de hoja seca natural. Pieza elegante y funcional para cualquier espacio.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 22 cm × 17 cm</p>
+                    <span class="file-price">10,99 €</span>
+                </div>
+            </div>
 
-    <div class="file-card">
-        <img src="Bombonera Estriada Botánica1.jpeg" alt="Bombonera Botánica 1">
-        <div class="file-info">
-            <h4>Bombonera Estriada Botánica 2</h4>
-            <p class="product-description">Bombonera de yeso con detalles botánicos y estriado. Variante exclusiva del modelo 1.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 15 cm de alto</p>
-            <span class="file-price">16,00 €</span>
-        </div>
-    </div>
+            <div class="file-card">
+                <img src="BandejaYesoRectangularServilleta.jpeg" alt="Bandeja Rectangular">
+                <div class="file-info">
+                    <h4>Bandeja Rectangular con Servilleta</h4>
+                    <p class="product-description">Bandeja rectangular de yeso con diseño de servilleta integrado. Perfecta para la mesa del comedor.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 25 cm × 15 cm</p>
+                    <span class="file-price">9,99 €</span>
+                </div>
+            </div>
 
-    <div class="file-card">
-        <img src="AmbientadorArmarios.jpeg" alt="Ambientador Armarios">
-        <div class="file-info">
-            <h4>Ambientador Armarios</h4>
-            <p class="product-description">Ambientador de yeso especialmente diseñado para armarios y espacios cerrados. Aroma duradero.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 7 cm de alto</p>
-            <span class="file-price">5,99 €</span>
-        </div>
-    </div>
+            <div class="file-card product-card">
+                <div class="carousel-container" id="carousel-bandejas-servilleta">
+                    <div class="carousel-inner">
+                        <img src="BandejaYesoServilletaModelo1.jpeg" class="active" alt="Bandeja Servilleta - Modelo 1">
+                        <img src="BandejaYesoServilletaModelo2.jpeg" alt="Bandeja Servilleta - Modelo 2">
+                    </div>
+                    <button class="nav-btn prev" onclick="cambiarSlide('carousel-bandejas-servilleta', -1)">&#10094;</button>
+                    <button class="nav-btn next" onclick="cambiarSlide('carousel-bandejas-servilleta', 1)">&#10095;</button>
+                </div>
+                <div class="file-info">
+                    <h4>Bandeja Servilleta (Modelos 1 y 2)</h4>
+                    <p class="product-description">Bandejas de yeso artesanales con elegante relieve de patrón de servilleta clásico y sofisticado.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 24 cm × 14 cm</p>
+                    <span class="file-price">10,99 €</span>
+                </div>
+            </div>
 
-    <div class="file-card">
-        <img src="AmbientadoresYeso2.jpeg" alt="Ambientador Yeso 2">
-        <div class="file-info">
-            <h4>Ambientador Yeso 2</h4>
-            <p class="product-description">Ambientador de yeso modelo 2. Diseño moderno y minimalista para cualquier espacio.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 8 cm de alto</p>
-            <span class="file-price">5,99 €</span>
-        </div>
-    </div>
+            <div class="file-card">
+                <img src="BandejaAnillos.png" alt="Bandeja Anillos">
+                <div class="file-info">
+                    <h4>Bandeja Anillos</h4>
+                    <p class="product-description">Bandeja elegante de yeso artesanal ideal para organizar anillos y joyas. Diseño minimalista que combina con cualquier decoración.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 25 cm de largo × 11 cm de ancho</p>
+                    <span class="file-price">15,00 €</span>
+                </div>
+            </div>
 
-    <div class="file-card">
-        <img src="AmbientadoresYeso3.jpeg" alt="Ambientador Yeso 3">
-        <div class="file-info">
-            <h4>Ambientador Yeso 3</h4>
-            <p class="product-description">Ambientador de yeso modelo 3. Complementa perfectamente cualquier rincón de tu hogar.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 8 cm de alto</p>
-            <span class="file-price">5,99 €</span>
-        </div>
-    </div>
+            <div class="file-card">
+                <img src="plato.jpeg" alt="Plato Sencillo">
+                <div class="file-info">
+                    <h4>Plato Sencillo</h4>
+                    <p class="product-description">Plato de yeso blanco con acabado sencillo. Ideal como base para velas o como elemento decorativo.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 20 cm de diámetro</p>
+                    <span class="file-price">5,99 €</span>
+                </div>
+            </div>
 
-    <div class="file-card">
-        <img src="AmbientadoresYesoHojaSeca1.jpeg" alt="Ambientador Yeso Hoja Seca 1">
-        <div class="file-info">
-            <h4>Ambientador Yeso con Hoja Seca 1</h4>
-            <p class="product-description">Ambientador de yeso con hoja seca natural modelo 1. Elegancia botánica en formato reducido.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 9 cm de alto</p>
-            <span class="file-price">5,99 €</span>
-        </div>
-    </div>
+            <div class="file-card">
+                <img src="PlatoHoja.jpeg" alt="Plato Hoja">
+                <div class="file-info">
+                    <h4>Plato Hoja</h4>
+                    <p class="product-description">Plato de yeso con textura de hoja natural. Añade un toque de naturaleza a tu decoración.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 20 cm de diámetro</p>
+                    <span class="file-price">5,99 €</span>
+                </div>
+            </div>
 
-    <div class="file-card">
-        <img src="AmbientadorYeso.jpeg" alt="Ambientador Yeso">
-        <div class="file-info">
-            <h4>Ambientador Yeso</h4>
-            <p class="product-description">Ambientador de yeso blanco puro. Diseño clásico que encaja en cualquier estilo de decoración.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 8 cm de alto</p>
-            <span class="file-price">5,99 €</span>
-        </div>
-    </div>
+            <div class="file-card">
+                <img src="platoMoto.jpeg" alt="Plato Moto">
+                <div class="file-info">
+                    <h4>Plato Moto</h4>
+                    <p class="product-description">Plato de yeso con detalle de patrón moto. Diseño único y original para decoradores aventureros.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 22 cm de diámetro</p>
+                    <span class="file-price">10,99 €</span>
+                </div>
+            </div>
 
-    <div class="file-card">
-        <img src="BandejaAnillos.png" alt="Bandeja Anillos">
-        <div class="file-info">
-            <h4>Bandeja Anillos</h4>
-            <p class="product-description">Bandeja elegante de yeso artesanal ideal para organizar anillos y joyas. Diseño minimalista que combina con cualquier decoración.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 25 cm de largo × 11 cm de ancho</p>
-            <span class="file-price">15,00 €</span>
         </div>
-    </div>
-    <div class="file-card">
-        <img src="AmbientadorYesoCoche.jpeg" alt="Ambientador Yeso Coche">
-        <div class="file-info">
-            <h4>Ambientador Yeso para Coche</h4>
-            <p class="product-description">Flor de yeso diseñada especialmente para espacios de coche. Fórmula resistente al calor.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 5 cm de alto aprox.</p>
-            <span class="file-price">6,99 €</span>
-        </div>
-    </div>
 
+        <!-- Subcategoría: Figuras y Sets Decorativos -->
+        <h3 class="subcategory-title" id="yesos-figuras" style="margin: 40px 0 15px 20px; color: #333; font-size: 1.5rem;">Figuras y Sets Decorativos</h3>
+        <div class="products-grid">
+
+            <div class="file-card" style="position: relative;">
+            <span style="position: absolute; top: 15px; left: 15px; background-color: #d4af37; color: #fff; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; letter-spacing: 1px; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">Novedad</span>
+            <img src="AbrazoMadreHija.png" alt="Figura Ambientador Abrazo Madre e Hija">
+            <div class="file-info">
+                <h4>Figura Ambientador (Abrazo Madre e Hija)</h4>
+                <p class="product-description">Figura decorativa artesanal con propiedades ambientadoras. Combina arte sentimental con funcionalidad para el hogar.</p>
+                <p class="product-measurements"><strong>Medidas:</strong> 11,5 cm de alto x 6 cm ancho</p>
+                <span class="file-price">9,99 €</span>
+            </div>
+        </div>  
+
+            <div class="file-card">
+                <img src="SetAcanalado.jpeg" alt="Set Vaso Estriado">
+                <div class="file-info">
+                    <h4>Set Acanalado</h4>
+                    <p class="product-description">Set de vaso de yeso con acabado acanalado. Incluye vela aromática perfumada.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 10 cm de alto (vaso)</p>
+                    <span class="file-price">14,00 €</span>
+                </div>
+            </div>
+
+            <div class="file-card">
+                <img src="SetVirgen.png" alt="Set Vaso con Virgen">
+                <div class="file-info">
+                    <h4>Set Virgen</h4>
+                    <p class="product-description">Set exclusivo de yeso con imagen de Virgen. Pieza especial para espacios sagrados o decorativos.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 12 cm de alto (vaso)</p>
+                    <span class="file-price">22,50 €</span>
+                </div>
+            </div>
+
+            <div class="file-card">
+                <img src="VasoYeso.jpeg" alt="Vaso Yeso">
+                <div class="file-info">
+                    <h4>Vaso Simple Estriado</h4>
+                    <p class="product-description">Vaso de yeso con textura estriada. Perfecto como base para velas aromáticas.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 9 cm de alto</p>
+                    <span class="file-price">6,00 €</span>
+                </div>
+            </div>
+
+            <div class="file-card">
+                <img src="VasoFlorVela.jpeg" alt="Vaso Flor Vela">
+                <div class="file-info">
+                    <h4>Vaso con Flor Vela</h4>
+                    <p class="product-description">Vaso de yeso decorado con flor seca natural. Incluye vela aromática de soja.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 11 cm de alto</p>
+                    <span class="file-price">10,99 €</span>
+                </div>
+            </div>
+
+            <div class="file-card">
+                <img src="VasoVela.jpeg" alt="Vaso Vela">
+                <div class="file-info">
+                    <h4>Vaso con Vela</h4>
+                    <p class="product-description">Vaso de yeso blanco con vela aromática de soja. Aroma envolvente y decoración elegante.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 12 cm de alto</p>
+                    <span class="file-price">12,99 €</span>
+                </div>
+            </div>
+
+            <div class="file-card">
+                <img src="cuenco.jpeg" alt="Cuenco Decorativo">
+                <div class="file-info">
+                    <h4>Cuenco Decorativo</h4>
+                    <p class="product-description">Cuenco de yeso artesanal. Perfecto para decorar o guardar objetos pequeños.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 18 cm de diámetro × 8 cm de alto</p>
+                    <span class="file-price">8,00 €</span>
+                </div>
+            </div>
+
+            <div class="file-card product-card">
+                <div class="carousel-container" id="carousel-bombonera">
+                    <div class="carousel-inner">
+                        <img src="Bombonera Estriada Botánica1.jpeg" class="active" alt="Vista frontal bombonera">
+                        <img src="Bombonera Estriada Botánica.jpeg" alt="Vista clip bombonera">
+                    </div>
+                    <button class="nav-btn prev" onclick="cambiarSlide('carousel-bombonera', -1)">&#10094;</button>
+                    <button class="nav-btn next" onclick="cambiarSlide('carousel-bombonera', 1)">&#10095;</button>
+                </div>
+                <div class="file-info">
+                    <h4>Bombonera Estriada Botánica</h4>
+                    <p class="product-description">Bombonera artesanal de yeso con un diseño de relieve botánico delicado. Ideal para decoración selecta.</p>
+                    <span class="file-price">6,00 €</span>
+                </div>
+            </div> 
+
+        </div>
+        <!-- ======================================================================= -->
+        <!-- FIN SECCIÓN: YESOS                                                      -->
+        <!-- ======================================================================= -->
+
+
+        <!-- ======================================================================= -->
+        <!-- SECCIÓN 2: AMBIENTADORES DE SOJA                                        -->
+        <!-- ======================================================================= -->
+        <h2 class="category-title" id="soja">Ambientadores de Soja</h2>
+
+        <div class="products-grid">
+
+            <!-- PRODUCTO NOVEDAD: Soja + Cera de Abeja -->
+            <div class="file-card" style="position: relative;">
+                <span style="position: absolute; top: 15px; left: 15px; background-color: #d4af37; color: #fff; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; letter-spacing: 1px; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">Novedad</span>
+                <img src="AmbientadorSoja+ceraAbeja.jpeg" alt="Ambientador de Soja Botánico Flor">
+                <div class="file-info">
+                    <h4>Ambientador Botánico de Soja y Abeja</h4>
+                    <p class="product-description">Ambientador exclusivo de cera de soja y cera de abeja 100% natural. Moldeado en forma de flor y decorado con delicadas flores secas y cinta de gasa.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 7,5 cm de diámetro aprox.</p>
+                    <span class="file-price">6,99 €</span>
+                </div>
+            </div>
+
+            <div class="file-card">
+                <img src="AmbientadoresSoja.jpeg" alt="Ambientadores Soja">
+                <div class="file-info">
+                    <h4>Ambientadores de Soja</h4>
+                    <p class="product-description">Velas ambientadoras de soja 100% natural. Ecoamigables y de larga duración con aromas naturales.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 7 cm de alto aprox.</p>
+                    <span class="file-price">6,99 €</span>
+                </div>
+            </div>
+
+            <div class="file-card">
+                <img src="AmbientadorSojaFloresSecas.jpeg" alt="Ambientador Soja Flores Secas">
+                <div class="file-info">
+                    <h4>Ambientador Soja con Flores Secas</h4>
+                    <p class="product-description">Vela de soja con flores secas naturales. Combina aroma natural con decoración botánica.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 7 cm de alto aprox.</p>
+                    <span class="file-price">6,99 €</span>
+                </div>
+            </div>
+
+            <div class="file-card">
+                <img src="AmbientadoresSojaFloresSecas2.jpeg" alt="Ambientador Soja Flores Secas 2">
+                <div class="file-info">
+                    <h4>Ambientador Soja con Flores Secas 2</h4>
+                    <p class="product-description">Vela de soja con flores secas modelo 2. Variante exclusiva con diferentes aromas.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 7 cm de alto aprox.</p>
+                    <span class="file-price">6,99 €</span>
+                </div>
+            </div>
+
+            <div class="file-card">
+                <img src="VelaSoja.jpeg" alt="Vela Soja">
+                <div class="file-info">
+                    <h4>Vela de Soja</h4>
+                    <p class="product-description">Vela de soja 100% natural. Sin tóxicos, larga duración y aromas premium.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 7 cm de alto aprox.</p>
+                    <span class="file-price">5,99 €</span>
+                </div>
+            </div>
+
+            <div class="file-card">
+                <img src="VelaSojaFlor.jpeg" alt="Vela Soja Flor">
+                <div class="file-info">
+                    <h4>Vela de Soja con Flor</h4>
+                    <p class="product-description">Vela de soja natural decorada con flor seca. Aromaterapia con toque decorativo.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 8 cm de alto aprox.</p>
+                    <span class="file-price">5,99 €</span>
+                </div>
+            </div>
+
+        </div>
+        <!-- ======================================================================= -->
+        <!-- FIN SECCIÓN: AMBIENTADORES DE SOJA                                      -->
+        <!-- ======================================================================= -->
+
+
+        <!-- ======================================================================= -->
+        <!-- SECCIÓN 3: MOMENTOS ESPECIALES                                         -->
+        <!-- ======================================================================= -->
+        <h2 class="category-title" id="especiales">Productos para Momentos Especiales</h2>
+
+        <div class="products-grid">
+
+            <div class="file-card">
+                <img src="velasBoda.jpg" alt="Vela Boda">
+                <div class="file-info">
+                    <h4>Vela Boda</h4>
+                    <p class="product-description">Vela especial para bodas y eventos. Diseño elegante con aroma exquisito que crea una atmósfera romántica.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 12 cm de alto</p>
+                    <span class="file-price">35,00 €</span>
+                </div>
+            </div>
+
+            <div class="file-card">
+                <img src="BandejaVelaSojaConNombre.jpeg" alt="Bandeja Vela Soja Con Nombre">
+                <div class="file-info">
+                    <h4>Bandeja Vela Soja Con Nombre</h4>
+                    <p class="product-description">Bandeja personalizada con vela de soja. Ideal para regalos especiales y eventos personalizados.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 20 cm × 15 cm</p>
+                    <span class="file-price">16,00 €</span>
+                </div>
+            </div>
+
+            <div class="file-card">
+                <img src="VelasBodas.jpg" alt="Velas Bodas">
+                <div class="file-info">
+                    <h4>Velas Bodas</h4>
+                    <p class="product-description">Conjunto de velas para bodas. Diseño elegante y sofisticado que ilumina momentos mágicos.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 12 cm de alto (por unidad)</p>
+                    <span class="file-price">7,00 €</span>
+                </div>
+            </div>
+
+            <div class="file-card" style="position: relative;">
+    <span style="position: absolute; top: 15px; left: 15px; background-color: #d4af37; color: #fff; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; letter-spacing: 1px; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">Novedad</span>
+    <img src="DecaracionMama.jpeg" alt="Decoración Mamá">
+    <div class="file-info">
+        <h4>Decoración Mamá</h4>
+        <p class="product-description">Pieza decorativa especial para regalar a mamá. Diseño cálido y significativo.</p>
+        <p class="product-measurements"><strong>Medidas:</strong> 12 cm × 13 cm</p>
+        <span class="file-price">8,99 €</span>
+    </div>
 </div>
 
-
-<!-- ================= AMBIENTADORES SOJA ================= -->
-
-<h2 class="category-title" id="soja">Ambientadores de Soja</h2>
-
-<div class="products-grid">
-
-    <div class="file-card">
-        <img src="AmbientadoresSoja.jpeg" alt="Ambientadores Soja">
-        <div class="file-info">
-            <h4>Ambientadores de Soja</h4>
-            <p class="product-description">Velas ambientadoras de soja 100% natural. Ecoamigables y de larga duración con aromas naturales.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 7 cm de alto aprox.</p>
-            <span class="file-price">6,99 €</span>
         </div>
-    </div>
-
-    <div class="file-card">
-        <img src="AmbientadorSojaFloresSecas.jpeg" alt="Ambientador Soja Flores Secas">
-        <div class="file-info">
-            <h4>Ambientador Soja con Flores Secas</h4>
-            <p class="product-description">Vela de soja con flores secas naturales. Combina aroma natural con decoración botánica.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 7 cm de alto aprox.</p>
-            <span class="file-price">6,99 €</span>
-        </div>
-    </div>
-    <div class="file-card">
-        <img src="AmbientadoresSojaFloresSecas2.jpeg" alt="Ambientador Soja Flores Secas 2">
-        <div class="file-info">
-            <h4>Ambientador Soja con Flores Secas 2</h4>
-            <p class="product-description">Vela de soja con flores secas modelo 2. Variante exclusiva con diferentes aromas.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 7 cm de alto aprox.</p>
-            <span class="file-price">6,99 €</span>
-        </div>
-    </div>
-    <div class="file-card">
-        <img src="VelaSoja.jpeg" alt="Vela Soja">
-        <div class="file-info">
-            <h4>Vela de Soja</h4>
-            <p class="product-description">Vela de soja 100% natural. Sin tóxicos, larga duración y aromas premium.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 7 cm de alto aprox.</p>
-            <span class="file-price">5,99 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="VelaSojaFlor.jpeg" alt="Vela Soja Flor">
-        <div class="file-info">
-            <h4>Vela de Soja con Flor</h4>
-            <p class="product-description">Vela de soja natural decorada con flor seca. Aromaterápia con toque decorativo.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 8 cm de alto aprox.</p>
-            <span class="file-price">5,99 €</span>
-        </div>
-    </div>
-
-    
-  
-</div>
-
-<!-- ================= PRODUCTOS ESPECIALES ================= -->
-
-<h2 class="category-title" id="especiales">Productos para Momentos Especiales</h2>
-
-<div class="products-grid">
-
-    <div class="file-card">
-        <img src="velasBoda.jpg" alt="Vela Boda">
-        <div class="file-info">
-            <h4>Vela Boda</h4>
-            <p class="product-description">Vela especial para bodas y eventos. Diseño elegante con aroma exquisito que crea una atmósfera romántica.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 12 cm de alto</p>
-            <span class="file-price">35,00 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="BandejaVelaSojaConNombre.jpeg" alt="Bandeja Vela Soja Con Nombre">
-        <div class="file-info">
-            <h4>Bandeja Vela Soja Con Nombre</h4>
-            <p class="product-description">Bandeja personalizada con vela de soja. Ideal para regalos especiales y eventos personalizados.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 20 cm × 15 cm</p>
-            <span class="file-price">16,00 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="VelasBodas.jpg" alt="Velas Bodas">
-        <div class="file-info">
-            <h4>Velas Bodas</h4>
-            <p class="product-description">Conjunto de velas para bodas. Diseño elegante y sofisticado que ilumina momentos mágicos.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 12 cm de alto (por unidad)</p>
-            <span class="file-price">35,00 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="DecaracionMama.jpeg" alt="Decoración Mamá">
-        <div class="file-info">
-            <h4>Decoración Mamá</h4>
-            <p class="product-description">Pieza decorativa especial para celebrar a la mamá. Diseño cálido y significativo.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 12 cm × 13 cm</p>
-            <span class="file-price">12,99 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="FiguraAmbientador.jpeg" alt="Figura Ambientador">
-        <div class="file-info">
-            <h4>Figura Ambientador</h4>
-            <p class="product-description">Figura decorativa con propiedades ambientadoras. Combina arte con funcionalidad.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> 11,5 cm de alto x 6 cm ancho</p>
-            <span class="file-price">8,99 €</span>
-        </div>
-    </div>
-
-    <div class="file-card">
-        <img src="Flyer.jpeg" alt="Flyer Promocional">
-        <div class="file-info">
-            <h4>Flyer Promocional</h4>
-            <p class="product-description">Material promocional de Paufe Studio. Perfecto para difundir nuestras creaciones artesanales.</p>
-            <p class="product-measurements"><strong>Medidas:</strong> A5 (14.8 cm × 10.5 cm)</p>
-            <span class="file-price">2,99 €</span>
-        </div>
-    </div>
-
-</div>
+        <!-- ======================================================================= -->
+        <!-- FIN SECCIÓN: MOMENTOS ESPECIALES                                        -->
+        <!-- ======================================================================= -->
 
     </div><!-- Cierre de main-content -->
 
-<div class="lightbox" id="lightbox">
-    <span class="lightbox-close" id="lightboxClose">&times;</span>
-    <img class="lightbox-img" id="lightboxImg" src="" alt="Imagen ampliada">
-</div>
+    <!-- LIGHTBOX (ZOOM DE IMÁGENES) -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="Imagen ampliada">
+    </div>
 
-<script>
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxClose = document.getElementById('lightboxClose');
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
 
-    document.querySelectorAll('.file-card img').forEach(img => {
-        img.addEventListener('click', () => {
-            lightboxImg.src = img.src;
-            lightboxImg.alt = img.alt;
-            lightbox.classList.add('active');
+        document.querySelectorAll('.file-card img').forEach(img => {
+            img.addEventListener('click', (e) => {
+                // Si el clic es en un botón de navegación del carrusel, no abre el Lightbox
+                if (e.target.closest('.nav-btn')) return;
+                
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
+            });
         });
-    });
 
-    lightboxClose.addEventListener('click', () => {
-        lightbox.classList.remove('active');
-    });
-
-    lightbox.addEventListener('click', (event) => {
-        if (event.target === lightbox) {
+        lightboxClose.addEventListener('click', () => {
             lightbox.classList.remove('active');
-        }
-    });
+        });
 
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-            lightbox.classList.remove('active');
-        }
-    });
-</script>
+        lightbox.addEventListener('click', (event) => {
+            if (event.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                lightbox.classList.remove('active');
+            }
+        });
+    </script>
 
 </body>
 </html>
