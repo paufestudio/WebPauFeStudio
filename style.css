@@ -15,6 +15,8 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
 }
 
 /* =========================================
@@ -155,6 +157,103 @@ body {
 }
 
 /* =========================================
+   MENÚ LATERAL Y LAYOUT
+========================================= */
+.sidebar-menu {
+    position: fixed;
+    left: 0;
+    top: 100px;
+    width: 240px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+    border-right: 1px solid #e8e8e8;
+    padding: 0;
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.08);
+    z-index: 100;
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 2px solid #e8e8e8;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.sidebar-logo {
+    max-width: 180px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.products-nav {
+    padding: 20px 0;
+}
+
+.products-nav h3 {
+    padding: 0 20px 20px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-color);
+    font-weight: 700;
+    margin: 10px 0 0 0;
+}
+
+.products-nav ul {
+    list-style: none;
+}
+
+.products-nav li {
+    padding: 0;
+}
+
+.products-nav a {
+    display: block;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+    position: relative;
+}
+
+.products-nav a::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.products-nav a:hover {
+    background-color: rgba(26, 26, 26, 0.05);
+    border-left-color: var(--accent-color);
+    padding-left: 32px;
+    color: var(--accent-color);
+}
+
+.products-nav a:hover::before {
+    opacity: 1;
+}
+
+.main-content {
+    margin-left: 240px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
    ARCHIVOS DEL PROYECTO
 ========================================= */
 .files-list {
@@ -181,11 +280,14 @@ body {
 }
 
 .category-title {
-    margin: 40px 40px 24px;
+    margin: 50px 40px 30px;
+    padding-bottom: 15px;
     font-size: 1.8rem;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
 }
 
 .file-card {
@@ -193,14 +295,14 @@ body {
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
 }
 
 .file-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 14px 32px rgba(0,0,0,0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.15);
 }
 
 .file-card img {
@@ -225,8 +327,26 @@ body {
 }
 
 .file-card .file-info .file-price {
-    font-size: 0.95rem;
-    color: #777;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    font-weight: bold;
+    display: block;
+    margin-top: 12px;
+}
+
+.product-description {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.4;
+    margin: 8px 0;
+    font-style: italic;
+}
+
+.product-measurements {
+    font-size: 0.8rem;
+    color: #666;
+    margin: 8px 0;
+    line-height: 1.3;
 }
 
 .card img,
@@ -457,3 +577,123 @@ body {
         align-items: center; /* Centrar whatsapp en móvil */
     }
 }
+
+/* =========================================
+   RESPONSIVE - SIDEBAR Y LAYOUT
+========================================= */
+@media (max-width: 768px) {
+    .sidebar-menu { 
+        width: 250px; 
+        height: 100vh; 
+        position: sticky; 
+        top: 0; 
+        background: #fdfbf7; 
+        border-right: 1px solid #ddd;
+        overflow-y: auto; /* Permite scroll si el menú es largo */
+        flex-shrink: 0;
+    }
+
+    .sidebar-header {
+        padding: 15px;
+        border-bottom: 2px solid #e8e8e8;
+    }
+
+    .sidebar-logo {
+        max-width: 120px;
+    }
+
+    .products-nav h3 {
+        padding: 15px 15px 10px;
+        font-size: 0.8rem;
+    }
+
+    .products-nav ul {
+        display: flex;
+        overflow-x: auto;
+        flex-wrap: wrap;
+        gap: 0;
+        padding: 0;
+    }
+
+    .products-nav li {
+        flex-shrink: 0;
+    }
+
+    .products-nav a {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+
+    .products-nav a::before {
+        display: none;
+    }
+
+    .products-nav a:hover {
+        background-color: rgba(26, 26, 26, 0.05);
+        border-left: none;
+        border-bottom-color: var(--accent-color);
+        padding-left: 15px;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .files-gallery,
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+        padding: 0 20px 20px;
+    }
+
+    .category-title {
+        margin: 30px 20px 15px;
+        font-size: 1.3rem;
+    }
+}
+   
+
+
+/* Estilos para el carrusel de productos compacto */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 280px; /* Cambia 200px por 280px para igualar a las demás */
+    overflow: hidden;
+    border-radius: 8px 8px 0 0; /* Ajusta bordes redondeados solo arriba */
+    background-color: #eee;
+}
+
+.carousel-inner img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Esto garantiza que la imagen llene el espacio sin deformarse */
+    display: none;
+}
+
+.carousel-inner img.active {
+    display: block;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 1.2rem;
+    z-index: 10;
+    border-radius: 50%;
+}
+.prev { left: 10px; }
+.next { right: 10px; }

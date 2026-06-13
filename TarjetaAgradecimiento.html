@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjetas Paufe Studio - Formato Horizontal con Catálogo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap');
+
+        /* Fondo de la pantalla (no se imprime) */
+        body {
+            background-color: #d1d1d1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 40px;
+            margin: 0;
+        }
+
+        /* Formato Horizontal (A6 apaisado: 14.8cm ancho x 10.5cm alto) */
+        .tarjeta {
+            background-color: #F3EFE9; 
+            width: 14.8cm;
+            height: 10.5cm;
+            box-sizing: border-box;
+            padding: 1cm 1.5cm;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        /* ESTILOS CARA 1 (PORTADA) */
+        .logo-tarjeta {
+            max-width: 65px; 
+            height: auto;
+            margin: 0 auto 10px auto;
+            mix-blend-mode: multiply; 
+        }
+
+        .marca {
+            font-family: 'Playfair Display', serif;
+            font-size: 18pt;
+            font-weight: 600;
+            letter-spacing: 4px;
+            color: #1a1a1a;
+            margin-bottom: 2px;
+        }
+
+        .subtitulo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7.5pt;
+            letter-spacing: 2.5px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .destacado {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8.5pt;
+            font-weight: 500;
+            line-height: 1.6;
+            color: #2b2b2b;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .cita {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 9.5pt;
+            color: #4a4a4a;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            padding: 0 10px;
+        }
+
+        /* Sección de contacto adaptada a 5 elementos */
+        .contacto {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 6pt; 
+            color: #555;
+            display: flex;
+            flex-wrap: wrap; /* Permite que los elementos pasen a la línea de abajo si no caben */
+            justify-content: center; /* Centra todos los elementos */
+            gap: 6px 15px; /* Espaciado entre elementos */
+            margin-top: auto;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .contacto a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            color: #4a4a4a;
+        }
+
+        .contacto i {
+            color: #1a1a1a;
+            font-size: 7.5pt; 
+        }
+
+        /* ESTILOS CARA 2 (INSTRUCCIONES A DOS COLUMNAS ENMARCADAS) */
+        .titulo-inst {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11pt;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .subtitulo-inst {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8pt;
+            color: #555;
+            line-height: 1.4;
+            margin-bottom: 18px; 
+        }
+
+        .pasos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 15px; 
+            text-align: left;
+        }
+
+        /* ESTILO DEL RECUADRO REDONDEADO */
+        .paso {
+            background-color: #ffffff; 
+            border-radius: 12px; 
+            padding: 12px; 
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02); 
+        }
+
+        .numero {
+            font-family: 'Playfair Display', serif;
+            font-size: 22pt;
+            font-style: italic;
+            color: #b0a494; 
+            line-height: 0.8;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .texto-paso h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8.5pt;
+            font-weight: 600;
+            margin: 0 0 3px 0;
+            color: #1a1a1a;
+            letter-spacing: 1px;
+        }
+
+        .texto-paso p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt; 
+            margin: 0;
+            color: #4a4a4a;
+            line-height: 1.4;
+        }
+
+        /* CONFIGURACIÓN MÁGICA PARA IMPRIMIR */
+        @media print {
+            body {
+                background: transparent;
+                padding: 0;
+                gap: 0;
+            }
+            .tarjeta {
+                box-shadow: none;
+                margin: 0;
+                page-break-after: always;
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+            }
+            @page {
+                size: 14.8cm 10.5cm;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tarjeta">
+        <img src="LogoPAUFE-removebg.png" alt="Logo Paufe Studio" class="logo-tarjeta">
+        <div class="marca">PAUFE STUDIO</div>
+        <div class="subtitulo">VELAS, YESO Y FLORES</div>
+        
+        <div class="destacado">
+            HECHO A MANO<br>
+            PRODUCTOS 100% NATURALES<br>
+            PARA LA CALMA DE TU HOGAR
+        </div>
+        
+        <div class="cita">
+            "Cada una de nuestras piezas está modelada a mano con infinito mimo. Gracias por valorar la artesanía y dejar que la esencia de Paufe Studio forme parte de la calidez de tus días."
+        </div>
+
+        <div class="contacto">
+            <a href="https://www.instagram.com/paufestudio/"><i class="fab fa-instagram"></i> @paufestudio</a>
+            <a href="https://wa.me/34614591836"><i class="fab fa-whatsapp"></i> 614 591 836</a>
+            <a href="https://wa.me/c/70725947895953"><i class="fas fa-store"></i> https://wa.me/c/70725947895953</a>
+            <a href="https://paufestudio.netlify.app/"><i class="fas fa-globe"></i> paufestudio.netlify.app</a>
+            <a href="mailto:paufestudio@gmail.com"><i class="fas fa-envelope"></i> paufestudio@gmail.com</a>
+        </div>
+    </div>
+
+    <div class="tarjeta">
+        <div class="titulo-inst">CÓMO CUIDARLO Y RENOVAR SU AROMA</div>
+        <div class="subtitulo-inst">Este ambientador de yeso es eterno. Cuando la fragancia se agote, reactívalo así:</div>
+        
+        <div class="pasos">
+            <div class="paso">
+                <div class="numero">01.</div>
+                <div class="texto-paso">
+                    <h4>AGITA</h4>
+                    <p>Agita bien el recambio antes de usarlo para mezclar los componentes.</p>
+                </div>
+            </div>
+            
+            <div class="paso">
+                <div class="numero">02.</div>
+                <div class="texto-paso">
+                    <h4>PULVERIZA</h4>
+                    <p>A 10-15 cm sobre la superficie de la pieza de manera uniforme.</p>
+                </div>
+            </div>
+            
+            <div class="paso">
+                <div class="numero">03.</div>
+                <div class="texto-paso">
+                    <h4>ESPERA</h4>
+                    <p>15 minutos para que el yeso absorba el aroma por completo y seque al tacto.</p>
+                </div>
+            </div>
+            
+            <div class="paso">
+                <div class="numero">04.</div>
+                <div class="texto-paso">
+                    <h4>¡LISTO!</h4>
+                    <p>Vuelve a colocarlo en tu armario o cuélgalo en tu rincón favorito.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flyer Promocional Paufe Studio - Diseño Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap');
+
+        /* Fondo pantalla (no imprime) */
+        body {
+            background-color: #d1d1d1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            margin: 0;
+        }
+
+        /* Tarjeta A6 Horizontal */
+        .tarjeta {
+            background-color: #F3EFE9; 
+            width: 14.8cm;
+            height: 10.5cm;
+            box-sizing: border-box;
+            padding: 0.7cm;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: row; 
+            gap: 22px;
+            text-align: left;
+            position: relative;
+        }
+
+        /* COLUMNA IZQUIERDA */
+        .columna-izquierda {
+            flex: 1.35; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; 
+            height: 100%;
+        }
+
+        /* Cabecera / Logo */
+        .brand-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 2px;
+        }
+
+        .logo-tarjeta {
+            max-width: 45px;
+            height: auto;
+            mix-blend-mode: multiply; 
+        }
+
+        .marca-texto {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .marca {
+            font-family: 'Playfair Display', serif;
+            font-size: 15pt;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: #1a1a1a;
+            line-height: 1.1;
+        }
+
+        .subtitulo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 6.5pt;
+            letter-spacing: 1.5px;
+            color: #555;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        /* Textos */
+        .eslogan {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 8.5pt;
+            color: #3a3a3a;
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+
+        .frase-regalo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7.5pt;
+            font-weight: 500;
+            color: #1a1a1a;
+            line-height: 1.35;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-left: 2px solid #b0a494;
+            margin-bottom: 8px;
+        }
+
+        /* Lista Características Fina */
+        .valores-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .valor-item {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            color: #4a4a4a;
+            line-height: 1.25;
+        }
+
+        .valor-item strong {
+            color: #1a1a1a;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 6.5pt;
+            letter-spacing: 0.5px;
+        }
+
+        /* Contacto Reducido */
+        .contacto {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 6pt; 
+            color: #555;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px 8px;
+            padding-top: 6px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .contacto a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            color: #4a4a4a;
+        }
+
+        .contacto i {
+            color: #1a1a1a;
+            font-size: 7pt; 
+        }
+
+        /* COLUMNA DERECHA (IMAGEN) */
+        .columna-derecha {
+            flex: 1;
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .producto-imagen {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            display: block;
+        }
+
+        /* IMPRESIÓN */
+        @media print {
+            body { background: transparent; padding: 0; }
+            .tarjeta { box-shadow: none; margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            @page { size: 14.8cm 10.5cm; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tarjeta">
+        
+        <div class="columna-izquierda">
+            <div class="brand-block">
+                <img src="LogoPAUFE-removebg.png" alt="Logo Paufe Studio" class="logo-tarjeta">
+                <div class="marca-texto">
+                    <div class="marca">PAUFE STUDIO</div>
+                    <div class="subtitulo">Velas &bull; Yeso &bull; Flores</div>
+                </div>
+            </div>
+            
+            <div class="eslogan">
+                "Transformamos espacios en refugios de calma. Diseños exclusivos y sostenibles que acarician los sentidos."
+            </div>
+
+            <div class="frase-regalo">
+                ¿Buscas el detalle perfecto para tu evento? Creamos regalos personalizados llenos de magia. Cuéntanos tu idea.
+            </div>
+
+            <div class="valores-list">
+                <div class="valor-item">
+                    &bull; <span><strong>100% Natural:</strong> Ceras vegetales puras, sin aditivos ni disruptores químicos.</span>
+                </div>
+                <div class="valor-item">
+                    &bull; <span><strong>Artesanía Pura:</strong> Cada pieza es modelada a mano con infinito mimo.</span>
+                </div>
+                <div class="valor-item">
+                    &bull; <span><strong>Aromas Únicos:</strong> Fragancias duraderas para aportar frescura y bienestar.</span>
+                </div>
+            </div>
+
+            <div class="contacto">
+                <a href="https://www.instagram.com/paufestudio/"><i class="fab fa-instagram"></i> @paufestudio</a>
+                <a href="https://wa.me/34614591836"><i class="fab fa-whatsapp"></i> 614 591 836</a>
+                <a href="https://wa.me/c/70725947895953"><i class="fas fa-store"></i> Ver Catálogo</a>
+                <a href="https://paufestudio.netlify.app/"><i class="fas fa-globe"></i> paufestudio.netlify.app</a>
+            </div>
+        </div>
+        
+        <div class="columna-derecha">
+            <img src="AmbientadoresYeso3.jpeg" alt="Detalle artesanía Paufe Studio" class="producto-imagen">
+        </div>
+
+    </div>
+
+</body>
+</html>
