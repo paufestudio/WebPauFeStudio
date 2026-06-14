@@ -89,6 +89,45 @@
         images[nextIndex].classList.add('active');
     }
 </script>
+<!-- 1. Estructura del Visor (Lightbox) si no la tenías -->
+<div class="lightbox">
+    <button class="lightbox-close">&times;</button>
+    <img src="" alt="" class="lightbox-img">
+</div>
+
+<!-- 2. El "motor" JavaScript que hace la magia -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImg = document.querySelector('.lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+
+        // Escucha el clic en cualquier imagen de producto
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.file-card img, .card img')) {
+                lightboxImg.src = e.target.src;
+                lightboxImg.alt = e.target.alt;
+                lightbox.classList.add('active');
+            }
+        });
+
+        // Cerrar al hacer clic en la X
+        if (lightboxClose) {
+            lightboxClose.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+            });
+        }
+
+        // Cerrar al hacer clic en el fondo negro
+        if (lightbox) {
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                }
+            });
+        }
+    });
+</script>
 
 <body>
 
@@ -161,7 +200,7 @@
                     <h4>Ambientador Yeso Blanco con Difusor</h4>
                     <p class="product-description">Ambientador artesanal de yeso con difusor incorporado. Perfecto para habitaciones y espacios pequeños.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 8 cm de alto</p>
-                    <span class="file-price">5,50 €</span>
+                    <span class="file-price">5,50 € / unidad</span>
                 </div>
             </div>
 
@@ -171,7 +210,7 @@
                     <h4>Ambientador Yeso con Flor</h4>
                     <p class="product-description">Ambientador de yeso decorado con flores naturales secas. Añade un toque elegante a cualquier rincón.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 10 cm de alto</p>
-                    <span class="file-price">7,50 €</span>
+                    <span class="file-price">7,50 € / unidad</span>
                 </div>
             </div>
 
@@ -181,7 +220,7 @@
                     <h4>Ambientador Yeso con Flor Colores</h4>
                     <p class="product-description">Ambientador de yeso con flores naturales en tonos variados. Diseño vibrante y atractivo.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 10 cm de alto</p>
-                    <span class="file-price">7,50 €</span>
+                    <span class="file-price">7,50 € / unidad</span>
                 </div>
             </div>
 
@@ -199,7 +238,7 @@
                     <h4>Ambientador Yeso con Hoja Seca</h4>
                     <p class="product-description">Ambientador de yeso blanco decorado con una hoja seca natural. Estilo minimalista y natural con variantes de diseño.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 9 cm de alto</p>
-                    <span class="file-price">6,50 €</span>
+                    <span class="file-price">6,50 € / unidad</span>
                 </div>
             </div>
 
@@ -217,7 +256,7 @@
                     <h4>Ambientador Yeso (Modelos Múltiples)</h4>
                     <p class="product-description">Ambientadores de yeso en modelos de diseño exclusivo. Complementa perfectamente cualquier rincón de tu hogar.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 8 cm de alto</p>
-                    <span class="file-price">5,99 €</span>
+                    <span class="file-price">5,99 € / unidad</span>
                 </div>
             </div>
 
@@ -227,19 +266,11 @@
                     <h4>Ambientador Yeso Simple</h4>
                     <p class="product-description">Ambientador de yeso blanco puro. Diseño clásico que encaja en cualquier estilo de decoración.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 8 cm de alto</p>
-                    <span class="file-price">5,99 €</span>
+                    <span class="file-price">5,99 € / unidad</span>
                 </div>
             </div>
 
-            <div class="file-card">
-                <img src="AmbientadorArmarios.jpeg" alt="Ambientador Armarios">
-                <div class="file-info">
-                    <h4>Ambientador Armarios</h4>
-                    <p class="product-description">Ambientador de yeso especialmente diseñado para armarios y espacios cerrados. Aroma duradero.</p>
-                    <p class="product-measurements"><strong>Medidas:</strong> 7 cm de alto</p>
-                    <span class="file-price">5,99 €</span>
-                </div>
-            </div>
+            
 
             <!-- PRODUCTO NOVEDAD: Ambientador para Coche con 3 imágenes -->
     <!-- PRODUCTO NOVEDAD: Ambientador para Coche (Solo 2 imágenes) -->
@@ -257,7 +288,7 @@
         <div class="file-info">
             <h4>Ambientador Yeso para Coche</h4>
             <p class="product-description">Flor de yeso diseñada especialmente para el coche con sistema de clip. Fórmula artesanal resistente al calor.</p>
-            <span class="file-price">6,00 €</span>
+            <span class="file-price">6,00 € / unidad</span>
         </div>
     </div>
 
@@ -273,7 +304,7 @@
                     <h4>Bandeja Yeso Blanca</h4>
                     <p class="product-description">Bandeja de yeso blanco artesanal. Ideal para organizar objetos pequeños o como elemento decorativo.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 20 cm × 15 cm</p>
-                    <span class="file-price">5,99 €</span>
+                    <span class="file-price">5,99 € / unidad</span>
                 </div>
             </div>
 
@@ -283,7 +314,7 @@
                     <h4>Bandeja Yeso Hoja Seca</h4>
                     <p class="product-description">Bandeja de yeso con detalle de hoja seca natural. Pieza elegante y funcional para cualquier espacio.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 22 cm × 17 cm</p>
-                    <span class="file-price">10,99 €</span>
+                    <span class="file-price">10,99 € / unidad</span>
                 </div>
             </div>
 
@@ -293,7 +324,7 @@
                     <h4>Bandeja Rectangular con Servilleta</h4>
                     <p class="product-description">Bandeja rectangular de yeso con diseño de servilleta integrado. Perfecta para la mesa del comedor.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 25 cm × 15 cm</p>
-                    <span class="file-price">9,99 €</span>
+                    <span class="file-price">9,99 € / unidad</span>
                 </div>
             </div>
 
@@ -310,7 +341,7 @@
                     <h4>Bandeja Servilleta (Modelos 1 y 2)</h4>
                     <p class="product-description">Bandejas de yeso artesanales con elegante relieve de patrón de servilleta clásico y sofisticado.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 24 cm × 14 cm</p>
-                    <span class="file-price">10,99 €</span>
+                    <span class="file-price">10,99 € / unidad</span>
                 </div>
             </div>
 
@@ -320,7 +351,7 @@
                     <h4>Bandeja Anillos</h4>
                     <p class="product-description">Bandeja elegante de yeso artesanal ideal para organizar anillos y joyas. Diseño minimalista que combina con cualquier decoración.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 25 cm de largo × 11 cm de ancho</p>
-                    <span class="file-price">15,00 €</span>
+                    <span class="file-price">15,00 € / unidad</span>
                 </div>
             </div>
 
@@ -330,7 +361,7 @@
                     <h4>Plato Sencillo</h4>
                     <p class="product-description">Plato de yeso blanco con acabado sencillo. Ideal como base para velas o como elemento decorativo.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 20 cm de diámetro</p>
-                    <span class="file-price">5,99 €</span>
+                    <span class="file-price">5,99 € / unidad</span>
                 </div>
             </div>
 
@@ -340,7 +371,7 @@
                     <h4>Plato Hoja</h4>
                     <p class="product-description">Plato de yeso con textura de hoja natural. Añade un toque de naturaleza a tu decoración.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 20 cm de diámetro</p>
-                    <span class="file-price">5,99 €</span>
+                    <span class="file-price">5,99 € / unidad</span>
                 </div>
             </div>
 
@@ -350,7 +381,7 @@
                     <h4>Plato Moto</h4>
                     <p class="product-description">Plato de yeso con detalle de patrón moto. Diseño único y original para decoradores aventureros.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 22 cm de diámetro</p>
-                    <span class="file-price">10,99 €</span>
+                    <span class="file-price">10,99 € / unidad</span>
                 </div>
             </div>
 
@@ -367,7 +398,7 @@
                 <h4>Figura Ambientador (Abrazo Madre e Hija)</h4>
                 <p class="product-description">Figura decorativa artesanal con propiedades ambientadoras. Combina arte sentimental con funcionalidad para el hogar.</p>
                 <p class="product-measurements"><strong>Medidas:</strong> 11,5 cm de alto x 6 cm ancho</p>
-                <span class="file-price">9,99 €</span>
+                <span class="file-price">9,99 € / unidad</span>
             </div>
         </div>  
 
@@ -377,7 +408,7 @@
                     <h4>Set Acanalado</h4>
                     <p class="product-description">Set de vaso de yeso con acabado acanalado. Incluye vela aromática perfumada.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 10 cm de alto (vaso)</p>
-                    <span class="file-price">14,00 €</span>
+                    <span class="file-price">14,00 € / unidad</span>
                 </div>
             </div>
 
@@ -387,7 +418,7 @@
                     <h4>Set Virgen</h4>
                     <p class="product-description">Set exclusivo de yeso con imagen de Virgen. Pieza especial para espacios sagrados o decorativos.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 12 cm de alto (vaso)</p>
-                    <span class="file-price">22,50 €</span>
+                    <span class="file-price">22,50 € / unidad</span>
                 </div>
             </div>
 
@@ -397,7 +428,7 @@
                     <h4>Vaso Simple Estriado</h4>
                     <p class="product-description">Vaso de yeso con textura estriada. Perfecto como base para velas aromáticas.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 9 cm de alto</p>
-                    <span class="file-price">6,00 €</span>
+                    <span class="file-price">6,00 € / unidad</span>
                 </div>
             </div>
 
@@ -407,7 +438,7 @@
                     <h4>Vaso con Flor Vela</h4>
                     <p class="product-description">Vaso de yeso decorado con flor seca natural. Incluye vela aromática de soja.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 11 cm de alto</p>
-                    <span class="file-price">10,99 €</span>
+                    <span class="file-price">10,99 € / unidad</span>
                 </div>
             </div>
 
@@ -417,7 +448,7 @@
                     <h4>Vaso con Vela</h4>
                     <p class="product-description">Vaso de yeso blanco con vela aromática de soja. Aroma envolvente y decoración elegante.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 12 cm de alto</p>
-                    <span class="file-price">12,99 €</span>
+                    <span class="file-price">12,99 € / unidad</span>
                 </div>
             </div>
 
@@ -427,7 +458,7 @@
                     <h4>Cuenco Decorativo</h4>
                     <p class="product-description">Cuenco de yeso artesanal. Perfecto para decorar o guardar objetos pequeños.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 18 cm de diámetro × 8 cm de alto</p>
-                    <span class="file-price">8,00 €</span>
+                    <span class="file-price">8,00 € / unidad</span>
                 </div>
             </div>
 
@@ -443,7 +474,7 @@
                 <div class="file-info">
                     <h4>Bombonera Estriada Botánica</h4>
                     <p class="product-description">Bombonera artesanal de yeso con un diseño de relieve botánico delicado. Ideal para decoración selecta.</p>
-                    <span class="file-price">6,00 €</span>
+                    <span class="file-price">6,00 € / unidad</span>
                 </div>
             </div> 
 
@@ -468,7 +499,7 @@
                     <h4>Ambientador Botánico de Soja y Abeja</h4>
                     <p class="product-description">Ambientador exclusivo de cera de soja y cera de abeja 100% natural. Moldeado en forma de flor y decorado con delicadas flores secas y cinta de gasa.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 7,5 cm de diámetro aprox.</p>
-                    <span class="file-price">6,99 €</span>
+                    <span class="file-price">6,99 € / unidad</span>
                 </div>
             </div>
 
@@ -478,7 +509,7 @@
                     <h4>Ambientadores de Soja</h4>
                     <p class="product-description">Velas ambientadoras de soja 100% natural. Ecoamigables y de larga duración con aromas naturales.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 7 cm de alto aprox.</p>
-                    <span class="file-price">6,99 €</span>
+                    <span class="file-price">6,99 € / unidad</span>
                 </div>
             </div>
 
@@ -488,7 +519,7 @@
                     <h4>Ambientador Soja con Flores Secas</h4>
                     <p class="product-description">Vela de soja con flores secas naturales. Combina aroma natural con decoración botánica.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 7 cm de alto aprox.</p>
-                    <span class="file-price">6,99 €</span>
+                    <span class="file-price">6,99 € / unidad</span>
                 </div>
             </div>
 
@@ -498,7 +529,7 @@
                     <h4>Ambientador Soja con Flores Secas 2</h4>
                     <p class="product-description">Vela de soja con flores secas modelo 2. Variante exclusiva con diferentes aromas.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 7 cm de alto aprox.</p>
-                    <span class="file-price">6,99 €</span>
+                    <span class="file-price">6,99 € / unidad</span>
                 </div>
             </div>
 
@@ -508,7 +539,7 @@
                     <h4>Vela de Soja</h4>
                     <p class="product-description">Vela de soja 100% natural. Sin tóxicos, larga duración y aromas premium.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 7 cm de alto aprox.</p>
-                    <span class="file-price">5,99 €</span>
+                    <span class="file-price">5,99 € / unidad</span>
                 </div>
             </div>
 
@@ -518,7 +549,7 @@
                     <h4>Vela de Soja con Flor</h4>
                     <p class="product-description">Vela de soja natural decorada con flor seca. Aromaterapia con toque decorativo.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 8 cm de alto aprox.</p>
-                    <span class="file-price">5,99 €</span>
+                    <span class="file-price">5,99 € / unidad</span>
                 </div>
             </div>
 
@@ -541,7 +572,7 @@
                     <h4>Vela Boda</h4>
                     <p class="product-description">Vela especial para bodas y eventos. Diseño elegante con aroma exquisito que crea una atmósfera romántica.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 12 cm de alto</p>
-                    <span class="file-price">35,00 €</span>
+                    <span class="file-price">35,00 € / unidad</span>
                 </div>
             </div>
 
@@ -551,7 +582,7 @@
                     <h4>Bandeja Vela Soja Con Nombre</h4>
                     <p class="product-description">Bandeja personalizada con vela de soja. Ideal para regalos especiales y eventos personalizados.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 20 cm × 15 cm</p>
-                    <span class="file-price">16,00 €</span>
+                    <span class="file-price">16,00 € / unidad</span>
                 </div>
             </div>
 
@@ -561,7 +592,7 @@
                     <h4>Velas Bodas</h4>
                     <p class="product-description">Conjunto de velas para bodas. Diseño elegante y sofisticado que ilumina momentos mágicos.</p>
                     <p class="product-measurements"><strong>Medidas:</strong> 12 cm de alto (por unidad)</p>
-                    <span class="file-price">7,00 €</span>
+                    <span class="file-price">7,00 € / unidad</span>
                 </div>
             </div>
 
@@ -572,9 +603,19 @@
         <h4>Decoración Mamá</h4>
         <p class="product-description">Pieza decorativa especial para regalar a mamá. Diseño cálido y significativo.</p>
         <p class="product-measurements"><strong>Medidas:</strong> 12 cm × 13 cm</p>
-        <span class="file-price">8,99 €</span>
+        <span class="file-price">8,99 € / unidad</span>
     </div>
+    
 </div>
+<div class="file-card">
+                <img src="AmbientadorArmarios.jpeg" alt="Ambientador Armarios">
+                <div class="file-info">
+                    <h4>Ambientador Armarios</h4>
+                    <p class="product-description">Ambientador de yeso especialmente diseñado para armarios y espacios cerrados. Aroma duradero.</p>
+                    <p class="product-measurements"><strong>Medidas:</strong> 7 cm de alto</p>
+                    <span class="file-price">5,99 € / unidad</span>
+                </div>
+            </div>
 
         </div>
         <!-- ======================================================================= -->

@@ -8,7 +8,11 @@
     --card-bg: #ffffff;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
 
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -157,7 +161,7 @@ body {
 }
 
 /* =========================================
-   MENÚ LATERAL Y LAYOUT
+   MENÚ LATERAL Y LAYOUT (ESCRITORIO)
 ========================================= */
 .sidebar-menu {
     position: fixed;
@@ -205,10 +209,6 @@ body {
     list-style: none;
 }
 
-.products-nav li {
-    padding: 0;
-}
-
 .products-nav a {
     display: block;
     padding: 14px 20px;
@@ -254,7 +254,7 @@ body {
 }
 
 /* =========================================
-   ARCHIVOS DEL PROYECTO
+   TARJETAS Y PRODUCTOS
 ========================================= */
 .files-list {
     padding: 40px 40px;
@@ -291,6 +291,7 @@ body {
 }
 
 .file-card {
+    position: relative; /* Esencial para el badge de novedad flotante */
     background-color: var(--card-bg);
     border-radius: 16px;
     overflow: hidden;
@@ -305,15 +306,13 @@ body {
     box-shadow: 0 16px 40px rgba(0,0,0,0.15);
 }
 
-.file-card img {
+.file-card img,
+.card img {
     width: 100%;
     display: block;
     height: 280px;
     object-fit: cover;
-}
-
-.file-card p {
-    padding: 18px 16px 24px;
+    cursor: zoom-in;
 }
 
 .file-card .file-info {
@@ -349,11 +348,65 @@ body {
     line-height: 1.3;
 }
 
-.card img,
-.file-card img {
-    cursor: zoom-in;
+/* Etiqueta de Novedad Flotante */
+.badge-novedad {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #d4af37; /* Dorado elegante */
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
 
+/* =========================================
+   ESTILOS PARA MINI-CARRUSELES EN TARJETAS
+========================================= */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 280px; 
+    overflow: hidden;
+    border-radius: 8px 8px 0 0; 
+    background-color: #eee;
+}
+
+.carousel-inner img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: none;
+}
+
+.carousel-inner img.active {
+    display: block;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 1.2rem;
+    z-index: 10;
+    border-radius: 50%;
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* =========================================
+   LIGHTBOX / VISOR EXPANDIDO
+========================================= */
 .lightbox {
     position: fixed;
     inset: 0;
@@ -376,24 +429,9 @@ body {
     box-shadow: 0 20px 60px rgba(0,0,0,0.4);
 }
 
-.lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: #fff;
-    font-size: 2.4rem;
-    cursor: pointer;
-    background: rgba(0, 0, 0, 0.35);
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-}
 
 /* =========================================
-   PORTAFOLIO (GRID)
+   PORTAFOLIO (GRID COMPLEMENTARIO)
 ========================================= */
 .portfolio {
     padding: 60px 40px;
@@ -415,7 +453,6 @@ body {
 
 .grid {
     display: grid;
-    /* La magia de la cuadrícula: fuerza a las tarjetas a ocupar espacio */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
@@ -433,9 +470,7 @@ body {
 }
 
 .card img {
-    width: 100%;
-    height: 350px; /* Aumentado a 350px para que las fotos luzcan bien */
-    object-fit: cover;
+    height: 350px; 
 }
 
 .card-content {
@@ -467,19 +502,19 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 60px 50px;
-    background-color: var(--bg-color); /* Crema integrado */
+    background-color: var(--bg-color); 
     border-top: 1px solid #eaeaea;
     margin-top: 40px;
-    gap: 30px; /* Espacio extra entre columnas */
+    gap: 30px; 
 }
 
 .footer-col {
     flex: 1;
-    min-width: 220px; /* Asegura que las columnas no se encojan demasiado */
+    min-width: 220px; 
 }
 
 .footer-logo {
-    width: 180px; /* Tamaño asegurado para el footer */
+    width: 180px; 
     mix-blend-mode: multiply;
     margin-bottom: 15px;
 }
@@ -510,7 +545,7 @@ body {
 .whatsapp-details {
     display: flex;
     align-items: center; 
-    gap: 15px; /* Separación icono/texto */
+    gap: 15px; 
 }
 
 .whatsapp-icon {
@@ -544,9 +579,9 @@ body {
     color: #999;
 }
 
-/* =========================================
-   REGLAS RESPONSIVAS (Móvil y Tablet)
-========================================= */
+/* ======================================================================= */
+/* REGLAS RESPONSIVAS GENERALES (TABLET / PANTALLAS MEDIANAS)              */
+/* ======================================================================= */
 @media (max-width: 900px) {
     .navbar {
         flex-direction: column;
@@ -574,126 +609,183 @@ body {
     }
     
     .contact-block {
-        align-items: center; /* Centrar whatsapp en móvil */
+        align-items: center; /* Centrar whatsapp en pantallas reducidas */
     }
 }
 
-/* =========================================
-   RESPONSIVE - SIDEBAR Y LAYOUT
-========================================= */
+/* ======================================================================= */
+/* REGLAS RESPONSIVAS EXCLUSIVAS PARA OPTIMIZACIÓN EN DISPOSITIVOS MÓVILES */
+/* ======================================================================= */
 @media (max-width: 768px) {
-    .sidebar-menu { 
-        width: 250px; 
-        height: 100vh; 
-        position: sticky; 
-        top: 0; 
-        background: #fdfbf7; 
-        border-right: 1px solid #ddd;
-        overflow-y: auto; /* Permite scroll si el menú es largo */
-        flex-shrink: 0;
+    
+    /* 1. Ajustes adaptativos en la Cabecera móvil */
+    .navbar {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .logo-container, .header-action {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logo {
+        max-width: 180px; 
+    }
+
+    /* Ocultamos el menú de navegación de texto superior para no saturar espacio */
+    .menu {
+        display: none; 
+    }
+
+    .btn-black {
+        display: inline-block;
+        width: 100%; 
+        max-width: 280px;
+        padding: 10px 15px;
+        font-size: 0.75rem;
+    }
+
+    /* 2. Redimensión del Banner Principal (Hero) */
+    .hero {
+        margin: 0 15px;
+        height: 35vh; 
+    }
+
+    .hero-overlay h1 {
+        font-size: 1.6rem; 
+        letter-spacing: 1px;
+    }
+
+    .hero-overlay p {
+        font-size: 0.95rem;
+    }
+
+    /* 3. Reestructuración del Menú de Categorías Lateral a Horizontal Deslizable */
+    .sidebar-menu {
+        position: static; /* Cambiado a static para liberar la pantalla en el móvil */
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #e8e8e8;
+        box-shadow: none;
+        padding: 10px 0;
     }
 
     .sidebar-header {
-        padding: 15px;
-        border-bottom: 2px solid #e8e8e8;
-    }
-
-    .sidebar-logo {
-        max-width: 120px;
+        display: none; 
     }
 
     .products-nav h3 {
-        padding: 15px 15px 10px;
+        padding: 0 20px 10px;
         font-size: 0.8rem;
+        text-align: center;
     }
 
-    .products-nav ul {
+    /* Carrusel de categorías horizontal con deslizamiento táctil (Swipe) */
+    .products-nav > ul {
         display: flex;
         overflow-x: auto;
-        flex-wrap: wrap;
-        gap: 0;
-        padding: 0;
+        white-space: nowrap;
+        padding: 0 15px 10px;
+        gap: 10px;
+        scrollbar-width: none; 
     }
-
-    .products-nav li {
-        flex-shrink: 0;
+    
+    .products-nav > ul::-webkit-scrollbar {
+        display: none; 
     }
 
     .products-nav a {
-        padding: 10px 15px;
-        font-size: 0.9rem;
-        white-space: nowrap;
-        border-left: none;
-        border-bottom: 3px solid transparent;
-    }
-
-    .products-nav a::before {
-        display: none;
+        padding: 8px 16px;
+        background-color: #ffffff;
+        border: 1px solid #e8e8e8;
+        border-radius: 20px;
+        font-size: 0.85rem;
     }
 
     .products-nav a:hover {
-        background-color: rgba(26, 26, 26, 0.05);
-        border-left: none;
-        border-bottom-color: var(--accent-color);
-        padding-left: 15px;
+        padding-left: 16px; 
+        background-color: var(--accent-color);
+        color: #fff;
     }
 
+    /* Ocultamos elementos que saturan el menú deslizable horizontal */
+    .products-nav a::before, 
+    .products-nav li ul {
+        display: none !important; 
+    }
+
+    /* 4. Ajustes del Contenedor de la Cuadrícula de Productos */
     .main-content {
-        margin-left: 0;
-    }
-
-    .navbar {
-        padding: 15px 20px;
-    }
-
-    .files-gallery,
-    .products-grid {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 15px;
-        padding: 0 20px 20px;
+        margin-left: 0; 
     }
 
     .category-title {
-        margin: 30px 20px 15px;
-        font-size: 1.3rem;
+        margin: 25px 20px 15px;
+        font-size: 1.4rem;
     }
-}
-   
 
+    .subcategory-title {
+        margin: 20px 0 10px 20px !important;
+        font-size: 1.1rem !important;
+    }
 
-/* Estilos para el carrusel de productos compacto */
-.carousel-container {
-    position: relative;
-    width: 100%;
-    height: 280px; /* Cambia 200px por 280px para igualar a las demás */
-    overflow: hidden;
-    border-radius: 8px 8px 0 0; /* Ajusta bordes redondeados solo arriba */
-    background-color: #eee;
-}
+    /* Reorganización fluida de los productos en 2 columnas compactas */
+    .files-gallery,
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px;
+        padding: 0 15px 20px;
+    }
 
-.carousel-inner img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Esto garantiza que la imagen llene el espacio sin deformarse */
-    display: none;
-}
+    /* Ajuste de dimensiones de imágenes y textos en tarjetas para móvil */
+    .file-card img {
+        height: 180px; 
+    }
 
-.carousel-inner img.active {
-    display: block;
-}
+    .file-card .file-info {
+        padding: 12px 10px;
+    }
 
-.nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.8);
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 1.2rem;
-    z-index: 10;
-    border-radius: 50%;
+    .file-card .file-info h4 {
+        font-size: 0.9rem;
+        line-height: 1.2;
+    }
+
+    .product-description,
+    .product-measurements {
+        font-size: 0.75rem;
+        margin: 5px 0;
+    }
+
+    .file-card .file-info .file-price {
+        font-size: 1rem;
+        margin-top: 6px;
+    }
+    
+    /* Forzado de tamaño para contenedores de carrusel dentro de tarjetas en móvil */
+    .carousel-container {
+        height: 180px; 
+    }
+
+    /* Ajustes del botón de cierre del visor expandido (Lightbox) */
+    .lightbox-close {
+		position: absolute;
+		top: 25px;
+		right: 30px;
+		width: 45px;
+		height: 45px;
+		font-size: 3rem;
+		color: #ffffff !important; /* Fuerza color blanco sobre el fondo oscuro */
+		background: none;
+		border: none;
+		cursor: pointer;
+		z-index: 10001;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 }
-.prev { left: 10px; }
-.next { right: 10px; }
