@@ -4,15 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paufe Studio | Velas, Yeso y Flores</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css"> 
 </head>
+
+<script>
+    // ==========================================
+    // 1. MOTOR DEL CARRUSEL (SLIDER DESLIZANTE)
+    // ==========================================
+    const heroSection = document.getElementById('inicio');
+    const carruselPistas = document.getElementById('carrusel-pistas');
+    
+    const imagenes = [
+        'SetVirgen.png',
+        'SetAcanalado.jpeg',
+        'AmbientadoresSoja.jpeg',
+        'BandejasYesoBlancas.jpeg'
+    ];
+    
+    let indiceActual = 0;
+    let sliderTimer;
+    
+    function cambiarImagen(indice) {
+        indiceActual = indice;
+        carruselPistas.style.transform = `translateX(-${indiceActual * 100}%)`;
+        
+        const dots = document.querySelectorAll('.hero-dot');
+        dots.forEach(d => d.classList.remove('active'));
+        if(dots[indiceActual]) dots[indiceActual].classList.add('active');
+    }
+
+    function startSlider() {
+        clearInterval(sliderTimer);
+        sliderTimer = setInterval(() => {
+            indiceActual = (indiceActual + 1) % imagenes.length;
+            cambiarImagen(indiceActual);
+        }, 5000);
+    }
+
+    heroSection.addEventListener('mouseenter', () => clearInterval(sliderTimer));
+    heroSection.addEventListener('mouseleave', startSlider);
+
+    startSlider();
+
+    // ==========================================
+    // 2. MOTOR DEL LIGHTBOX (GALERÍA)
+    // ==========================================
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('.file-card img').forEach(img => {
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add('active');
+        });
+    });
+
+    const cerrarLightbox = () => lightbox.classList.remove('active');
+    lightboxClose.addEventListener('click', cerrarLightbox);
+    
+    lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) cerrarLightbox();
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') cerrarLightbox();
+    });
+
+    console.log("Scripts cargados correctamente.");
+
+    // ==========================================
+    // 3. CAMBIAR MINI-SLIDES (FLECHAS INTERACTIVAS)
+    // ==========================================
+    function cambiarSlide(id, dir) {
+        const container = document.getElementById(id);
+        const images = container.querySelectorAll('img');
+        let activeIndex = Array.from(images).findIndex(i => i.classList.contains('active'));
+        
+        images[activeIndex].classList.remove('active');
+        let nextIndex = (activeIndex + dir + images.length) % images.length;
+        images[nextIndex].classList.add('active');
+    }
+</script>
+<!-- 1. Estructura del Visor (Lightbox) si no la tenías -->
+<div class="lightbox">
+    <button class="lightbox-close">&times;</button>
+    <img src="" alt="" class="lightbox-img">
+</div>
+
+<!-- 2. El "motor" JavaScript que hace la magia -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImg = document.querySelector('.lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+
+        // Escucha el clic en cualquier imagen de producto
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.file-card img, .card img')) {
+                lightboxImg.src = e.target.src;
+                lightboxImg.alt = e.target.alt;
+                lightbox.classList.add('active');
+            }
+        });
+
+        // Cerrar al hacer clic en la X
+        if (lightboxClose) {
+            lightboxClose.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+            });
+        }
+
+        // Cerrar al hacer clic en el fondo negro
+        if (lightbox) {
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                }
+            });
+        }
+    });
+</script>
+
 <body>
 
     <header class="navbar">
         <div class="logo-container">
             <img src="cabecera-removebg.png" alt="Paufe Studio" class="logo">
         </div>
+        
         <nav class="menu">
             <ul>
                 <li><a href="#inicio">Home</a></li>
@@ -21,6 +144,7 @@
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
+        
         <div class="header-action">
             <a href="https://wa.me/34614591836" class="btn-black">Contacto WhatsApp</a>
         </div>
@@ -36,14 +160,8 @@
         </div>
     </section>
 
-    <!-- Botón flotante para abrir categorías en móvil -->
-    <button class="mobile-menu-toggle" id="mobileMenuToggle">
-        <i class="fas fa-bars"></i> <span>Categorías</span>
-    </button>
-
     <!-- MENÚ LATERAL -->
-    <div class="sidebar-menu" id="sidebarMenu">
-        <button class="sidebar-close" id="sidebarClose">&times;</button>
+    <div class="sidebar-menu">
         <div class="sidebar-header">
             <img src="LogoPAUFE-removebg.png" alt="Logo Paufe Studio" class="sidebar-logo">
         </div>
@@ -67,10 +185,13 @@
     <!-- CONTENEDOR PRINCIPAL DE PRODUCTOS -->
     <div class="main-content">
 
-        <!-- SECCIÓN 1: YESOS -->
+        <!-- ======================================================================= -->
+        <!-- SECCIÓN 1: YESOS                                                        -->
+        <!-- ======================================================================= -->
         <h2 class="category-title" id="yesos">Yesos</h2>
 
-        <h3 class="subcategory-title" id="yesos-ambientadores">Ambientadores de Yeso</h3>
+        <!-- Subcategoría: Ambientadores de Yeso -->
+        <h3 class="subcategory-title" id="yesos-ambientadores" style="margin: 30px 0 15px 20px; color: #333; font-size: 1.5rem;">Ambientadores de Yeso</h3>
         <div class="products-grid">
 
             <div class="file-card">
@@ -103,6 +224,7 @@
                 </div>
             </div>
 
+            <!-- CARRUSEL: Ambientadores Hoja Seca (Modelos combinados) -->
             <div class="file-card product-card">
                 <div class="carousel-container" id="carousel-hoja-seca">
                     <div class="carousel-inner">
@@ -120,6 +242,7 @@
                 </div>
             </div>
 
+            <!-- CARRUSEL: Ambientadores Estándar (Modelos 2 y 3 combinados) -->
             <div class="file-card product-card">
                 <div class="carousel-container" id="carousel-ambientadores-modelos">
                     <div class="carousel-inner">
@@ -147,26 +270,32 @@
                 </div>
             </div>
 
-            <div class="file-card product-card">
-                <span class="badge-novedad">Novedad</span>
-                <div class="carousel-container" id="carousel-coche">
-                    <div class="carousel-inner">
-                        <img src="AmbientadorYesoCoche1.jpeg" class="active" alt="Vista frontal coche">
-                        <img src="AmbientadorYesoCoche2.jpeg" alt="Vista clip coche">
-                    </div>
-                    <button class="nav-btn prev" onclick="cambiarSlide('carousel-coche', -1)">&#10094;</button>
-                    <button class="nav-btn next" onclick="cambiarSlide('carousel-coche', 1)">&#10095;</button>
-                </div>
-                <div class="file-info">
-                    <h4>Ambientador Yeso para Coche</h4>
-                    <p class="product-description">Flor de yeso diseñada especialmente para el coche con sistema de clip. Fórmula artesanal resistente al calor.</p>
-                    <span class="file-price">6,00 € / unidad</span>
-                </div>
+            
+
+            <!-- PRODUCTO NOVEDAD: Ambientador para Coche con 3 imágenes -->
+    <!-- PRODUCTO NOVEDAD: Ambientador para Coche (Solo 2 imágenes) -->
+    <div class="file-card product-card" style="position: relative;">
+        <span style="position: absolute; top: 15px; left: 15px; background-color: #d4af37; color: #fff; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; letter-spacing: 1px; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">Novedad</span>
+        <div class="carousel-container" id="carousel-coche">
+            <div class="carousel-inner">
+                <!-- Añadida la clase 'active' a la primera imagen para que funcione el script -->
+                <img src="AmbientadorYesoCoche1.jpeg" class="active" alt="Vista frontal coche">
+                <img src="AmbientadorYesoCoche2.jpeg" alt="Vista clip coche">
             </div>
+            <button class="nav-btn prev" onclick="cambiarSlide('carousel-coche', -1)">&#10094;</button>
+            <button class="nav-btn next" onclick="cambiarSlide('carousel-coche', 1)">&#10095;</button>
+        </div>
+        <div class="file-info">
+            <h4>Ambientador Yeso para Coche</h4>
+            <p class="product-description">Flor de yeso diseñada especialmente para el coche con sistema de clip. Fórmula artesanal resistente al calor.</p>
+            <span class="file-price">6,00 € / unidad</span>
+        </div>
+    </div>
 
         </div>
 
-        <h3 class="subcategory-title" id="yesos-bandejas">Bandejas y Platos</h3>
+        <!-- Subcategoría: Bandejas y Platos -->
+        <h3 class="subcategory-title" id="yesos-bandejas" style="margin: 40px 0 15px 20px; color: #333; font-size: 1.5rem;">Bandejas y Platos</h3>
         <div class="products-grid">
 
             <div class="file-card">
@@ -258,19 +387,20 @@
 
         </div>
 
-        <h3 class="subcategory-title" id="yesos-figuras">Figuras y Sets Decorativos</h3>
+        <!-- Subcategoría: Figuras y Sets Decorativos -->
+        <h3 class="subcategory-title" id="yesos-figuras" style="margin: 40px 0 15px 20px; color: #333; font-size: 1.5rem;">Figuras y Sets Decorativos</h3>
         <div class="products-grid">
 
-            <div class="file-card">
-                <span class="badge-novedad">Novedad</span>
-                <img src="AbrazoMadreHija.png" alt="Figura Ambientador Abrazo Madre e Hija">
-                <div class="file-info">
-                    <h4>Figura Ambientador (Abrazo Madre e Hija)</h4>
-                    <p class="product-description">Figura decorativa artesanal con propiedades ambientadoras. Combina arte sentimental con funcionalidad para el hogar.</p>
-                    <p class="product-measurements"><strong>Medidas:</strong> 11,5 cm de alto x 6 cm ancho</p>
-                    <span class="file-price">9,99 € / unidad</span>
-                </div>
-            </div>  
+            <div class="file-card" style="position: relative;">
+            <span style="position: absolute; top: 15px; left: 15px; background-color: #d4af37; color: #fff; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; letter-spacing: 1px; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">Novedad</span>
+            <img src="AbrazoMadreHija.png" alt="Figura Ambientador Abrazo Madre e Hija">
+            <div class="file-info">
+                <h4>Figura Ambientador (Abrazo Madre e Hija)</h4>
+                <p class="product-description">Figura decorativa artesanal con propiedades ambientadoras. Combina arte sentimental con funcionalidad para el hogar.</p>
+                <p class="product-measurements"><strong>Medidas:</strong> 11,5 cm de alto x 6 cm ancho</p>
+                <span class="file-price">9,99 € / unidad</span>
+            </div>
+        </div>  
 
             <div class="file-card">
                 <img src="SetAcanalado.jpeg" alt="Set Vaso Estriado">
@@ -349,13 +479,21 @@
             </div> 
 
         </div>
+        <!-- ======================================================================= -->
+        <!-- FIN SECCIÓN: YESOS                                                      -->
+        <!-- ======================================================================= -->
 
-        <!-- SECCIÓN 2: AMBIENTADORES DE SOJA -->
+
+        <!-- ======================================================================= -->
+        <!-- SECCIÓN 2: AMBIENTADORES DE SOJA                                        -->
+        <!-- ======================================================================= -->
         <h2 class="category-title" id="soja">Ambientadores de Soja</h2>
+
         <div class="products-grid">
 
-            <div class="file-card">
-                <span class="badge-novedad">Novedad</span>
+            <!-- PRODUCTO NOVEDAD: Soja + Cera de Abeja -->
+            <div class="file-card" style="position: relative;">
+                <span style="position: absolute; top: 15px; left: 15px; background-color: #d4af37; color: #fff; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; letter-spacing: 1px; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">Novedad</span>
                 <img src="AmbientadorSoja+ceraAbeja.jpeg" alt="Ambientador de Soja Botánico Flor">
                 <div class="file-info">
                     <h4>Ambientador Botánico de Soja y Abeja</h4>
@@ -416,9 +554,16 @@
             </div>
 
         </div>
+        <!-- ======================================================================= -->
+        <!-- FIN SECCIÓN: AMBIENTADORES DE SOJA                                      -->
+        <!-- ======================================================================= -->
 
-        <!-- SECCIÓN 3: MOMENTOS ESPECIALES -->
+
+        <!-- ======================================================================= -->
+        <!-- SECCIÓN 3: MOMENTOS ESPECIALES                                         -->
+        <!-- ======================================================================= -->
         <h2 class="category-title" id="especiales">Productos para Momentos Especiales</h2>
+
         <div class="products-grid">
 
             <div class="file-card">
@@ -451,18 +596,18 @@
                 </div>
             </div>
 
-            <div class="file-card">
-                <span class="badge-novedad">Novedad</span>
-                <img src="DecaracionMama.jpeg" alt="Decoración Mamá">
-                <div class="file-info">
-                    <h4>Decoración Mamá</h4>
-                    <p class="product-description">Pieza decorativa especial para regalar a mamá. Diseño cálido y significativo.</p>
-                    <p class="product-measurements"><strong>Medidas:</strong> 12 cm × 13 cm</p>
-                    <span class="file-price">8,99 € / unidad</span>
-                </div>
-            </div>
-
-            <div class="file-card">
+            <div class="file-card" style="position: relative;">
+    <span style="position: absolute; top: 15px; left: 15px; background-color: #d4af37; color: #fff; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; letter-spacing: 1px; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">Novedad</span>
+    <img src="DecaracionMama.jpeg" alt="Decoración Mamá">
+    <div class="file-info">
+        <h4>Decoración Mamá</h4>
+        <p class="product-description">Pieza decorativa especial para regalar a mamá. Diseño cálido y significativo.</p>
+        <p class="product-measurements"><strong>Medidas:</strong> 12 cm × 13 cm</p>
+        <span class="file-price">8,99 € / unidad</span>
+    </div>
+    
+</div>
+<div class="file-card">
                 <img src="AmbientadorArmarios.jpeg" alt="Ambientador Armarios">
                 <div class="file-info">
                     <h4>Ambientador Armarios</h4>
@@ -473,98 +618,50 @@
             </div>
 
         </div>
-    </div>
+        <!-- ======================================================================= -->
+        <!-- FIN SECCIÓN: MOMENTOS ESPECIALES                                        -->
+        <!-- ======================================================================= -->
 
-    <!-- VISOR GLOBAL (LIGHTBOX) -->
+    </div><!-- Cierre de main-content -->
+
+    <!-- LIGHTBOX (ZOOM DE IMÁGENES) -->
     <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
         <img class="lightbox-img" id="lightboxImg" src="" alt="Imagen ampliada">
     </div>
 
-    <!-- MOTOR JAVASCRIPT UNIFICADO -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // 1. MENU LATERAL PARA MÓVILES (HAMBURGUESA)
-            const sidebar = document.getElementById('sidebarMenu');
-            const menuToggle = document.getElementById('mobileMenuToggle');
-            const menuClose = document.getElementById('sidebarClose');
-            const menuLinks = document.querySelectorAll('.products-nav a');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
 
-            if (menuToggle && sidebar) {
-                menuToggle.addEventListener('click', function() {
-                    sidebar.classList.add('open');
-                });
-            }
-
-            if (menuClose && sidebar) {
-                menuClose.addEventListener('click', function() {
-                    sidebar.classList.remove('open');
-                });
-            }
-
-            menuLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if(sidebar) sidebar.classList.remove('open');
-                });
+        document.querySelectorAll('.file-card img').forEach(img => {
+            img.addEventListener('click', (e) => {
+                // Si el clic es en un botón de navegación del carrusel, no abre el Lightbox
+                if (e.target.closest('.nav-btn')) return;
+                
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
             });
-
-            // 2. HERO SLIDER AUTOMÁTICO
-            const heroSection = document.getElementById('inicio');
-            const carruselPistas = document.getElementById('carrusel-pistas');
-            const imagenesHero = ['SetVirgen.png', 'SetAcanalado.jpeg', 'AmbientadoresSoja.jpeg', 'BandejasYesoBlancas.jpeg'];
-            let indiceActualHero = 0;
-            let sliderTimer;
-
-            function startSlider() {
-                clearInterval(sliderTimer);
-                sliderTimer = setInterval(() => {
-                    if(carruselPistas) {
-                        indiceActualHero = (indiceActualHero + 1) % imagenesHero.length;
-                        // Opcional: Si implementas slider por css transform, descomenta la siguiente línea:
-                        // carruselPistas.style.transform = `translateX(-${indiceActualHero * 100}%)`;
-                    }
-                }, 5000);
-            }
-
-            if(heroSection) {
-                heroSection.addEventListener('mouseenter', () => clearInterval(sliderTimer));
-                heroSection.addEventListener('mouseleave', startSlider);
-                startSlider();
-            }
-
-            // 3. LIGHTBOX GLOBAL (ZOOM)
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-            const lightboxClose = document.getElementById('lightboxClose');
-
-            document.addEventListener('click', function(e) {
-                if (e.target.matches('.file-card img, .carousel-inner img')) {
-                    if (e.target.closest('.nav-btn')) return; 
-                    lightboxImg.src = e.target.src;
-                    lightboxImg.alt = e.target.alt;
-                    lightbox.classList.add('active');
-                }
-            });
-
-            const cerrarLightbox = () => { if(lightbox) lightbox.classList.remove('active'); };
-            if (lightboxClose) lightboxClose.addEventListener('click', cerrarLightbox);
-            if (lightbox) lightbox.addEventListener('click', (e) => { if (e.target === lightbox) cerrarLightbox(); });
-            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') cerrarLightbox(); });
         });
 
-        // 4. CAMBIAR MINI-SLIDES EN TARJETAS (FLECHAS INTERACTIVAS)
-        function cambiarSlide(id, dir) {
-            const container = document.getElementById(id);
-            if (!container) return;
-            const images = container.querySelectorAll('img');
-            let activeIndex = Array.from(images).findIndex(i => i.classList.contains('active'));
-            
-            if (activeIndex !== -1) {
-                images[activeIndex].classList.remove('active');
-                let nextIndex = (activeIndex + dir + images.length) % images.length;
-                images[nextIndex].classList.add('active');
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', (event) => {
+            if (event.target === lightbox) {
+                lightbox.classList.remove('active');
             }
-        }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                lightbox.classList.remove('active');
+            }
+        });
     </script>
+
 </body>
 </html>
