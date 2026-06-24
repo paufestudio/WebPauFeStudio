@@ -1,0 +1,571 @@
+/* =========================================
+   VARIABLES Y RESET
+========================================= */
+:root {
+    --bg-color: #F3EFE9; 
+    --text-color: #2b2b2b;
+    --accent-color: #1a1a1a;
+    --card-bg: #ffffff;
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+/* =========================================
+   CABECERA / NAVEGACIÓN
+========================================= */
+.navbar {
+    background-color: var(--bg-color); 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px; 
+    border-bottom: 1px solid rgba(0,0,0,0.05); 
+}
+
+.logo-container {
+    width: 250px;
+}
+
+.logo {
+    width: 250px; 
+    height: auto;
+    mix-blend-mode: multiply; 
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--text-color);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.header-action {
+    width: 250px;
+    text-align: right;
+}
+
+.btn-black {
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 12px 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   HERO SECTION
+========================================= */
+.hero {
+    background-image: url('SetVirgen.png'); 
+    background-size: cover;
+    background-position: center 30%;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 0 40px; 
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+.hero-overlay h1 {
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.hero-overlay p {
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+/* =========================================
+   MENÚ LATERAL Y LAYOUT (ESCRITORIO)
+========================================= */
+.sidebar-menu {
+    position: fixed;
+    top: 0;
+    left: 0; /* Visible por defecto en escritorio */
+    width: 260px;
+    height: 100vh;
+    background-color: #ffffff;
+    border-right: 1px solid rgba(0,0,0,0.05);
+    z-index: 1000;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 2px solid #e8e8e8;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.sidebar-logo {
+    max-width: 180px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.products-nav {
+    padding: 20px 0;
+}
+
+.products-nav h3 {
+    padding: 0 20px 20px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-color);
+    font-weight: 700;
+    margin: 10px 0 0 0;
+}
+
+.products-nav ul {
+    list-style: none;
+}
+
+.products-nav a {
+    display: block;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.products-nav a:hover {
+    background-color: rgba(26, 26, 26, 0.05);
+    border-left-color: var(--accent-color);
+    padding-left: 32px;
+    color: var(--accent-color);
+}
+
+/* Espacio reservado para el menú lateral en pantallas grandes */
+.main-content {
+    margin-left: 260px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Controladores Ocultos por Defecto en Escritorio */
+.sidebar-close, .mobile-menu-toggle {
+    display: none;
+}
+
+/* =========================================
+   REGLAS RESPONSIVAS (MÓVILES MÁX 768PX)
+========================================= */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .logo-container, .header-action {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logo { max-width: 180px; }
+    .menu { display: none; } /* Ocultar links genéricos en móvil */
+
+    .hero {
+        margin: 0 15px;
+        height: 30vh;
+    }
+
+    .hero-overlay h1 { font-size: 1.5rem; }
+    .hero-overlay p { font-size: 0.9rem; }
+
+    /* Mostrar botón flotante en móviles */
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        position: fixed;
+        bottom: 25px;
+        right: 20px;
+        background-color: #1a1a1a;
+        color: #ffffff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        z-index: 9999;
+        cursor: pointer;
+    }
+
+    /* Menú Lateral se oculta hacia la izquierda en móviles */
+    .sidebar-menu {
+        left: -280px; 
+        width: 280px;
+        z-index: 10000;
+        box-shadow: 5px 0 25px rgba(0,0,0,0.2);
+    }
+
+    /* Al tener la clase .open, se desliza hacia adentro */
+    .sidebar-menu.open {
+        left: 0;
+    }
+
+    .sidebar-close {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 2rem;
+        background: none;
+        border: none;
+        color: #333;
+        cursor: pointer;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    /* Forzar rejilla perfecta de 2 columnas en teléfonos */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 0 10px 20px;
+    }
+
+    .category-title { margin: 25px 15px 10px; font-size: 1.4rem; }
+    .subcategory-title { margin: 20px 0 10px 15px; font-size: 1.1rem; }
+
+    /* Reducción proporcional de alturas en móvil */
+    .file-card img, .carousel-container {
+        height: 170px;
+    }
+
+    .file-card .file-info { padding: 10px; }
+    .file-card .file-info h4 { font-size: 0.85rem; }
+    .product-description { display: none; } 
+}
+
+/* =========================================
+   TARJETAS Y PRODUCTOS
+========================================= */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    padding: 0 40px 40px;
+    max-width: 1400px;
+    width: 100%;
+}
+
+.category-title {
+    margin: 50px 40px 10px;
+    padding-bottom: 15px;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
+}
+
+.subcategory-title {
+    margin: 30px 0 15px 40px; 
+    color: #333; 
+    font-size: 1.5rem;
+}
+
+.file-card {
+    position: relative !important;
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.file-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+}
+
+.file-card img {
+    width: 100%;
+    display: block;
+    height: 280px;
+    object-fit: cover;
+    cursor: zoom-in;
+}
+
+.file-card .file-info {
+    padding: 18px 16px 24px;
+}
+
+.file-card .file-info h4 {
+    margin: 0 0 8px;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.file-card .file-info .file-price {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    font-weight: bold;
+    display: block;
+    margin-top: 12px;
+}
+
+.product-description {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.4;
+    margin: 8px 0;
+    font-style: italic;
+}
+
+.product-measurements {
+    font-size: 0.8rem;
+    color: #666;
+    margin: 8px 0;
+}
+
+/* Etiqueta Novedad Estable */
+.badge-novedad {
+    position: absolute !important;
+    top: 15px !important;
+    left: 15px !important;
+    background-color: #d4af37 !important; 
+    color: #fff !important;
+    font-size: 0.75rem !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    padding: 5px 10px !important;
+    border-radius: 20px !important;
+    letter-spacing: 1px !important;
+    z-index: 10 !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15) !important;
+}
+
+/* =========================================
+   MINI-CARRUSELES EN TARJETAS
+========================================= */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 280px; 
+    overflow: hidden;
+    background-color: #eee;
+}
+
+.carousel-inner img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: none;
+}
+
+.carousel-inner img.active {
+    display: block;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 1.2rem;
+    z-index: 10;
+    border-radius: 50%;
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* =========================================
+   LIGHTBOX / VISOR EXPANDIDO RESPONSIVE
+========================================= */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 99999;
+    padding: 20px;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-img {
+    max-width: 95%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 14px;
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 3.5rem;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.5);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    z-index: 100000;
+}
+
+/* Controladores Ocultos por Defecto */
+.sidebar-close, .mobile-menu-toggle {
+    display: none;
+}
+
+/* =========================================
+   REGLAS RESPONSIVAS (MÓVILES MÁX 768PX)
+========================================= */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .logo-container, .header-action {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logo { max-width: 180px; }
+    .menu { display: none; } /* Ocultar links genéricos en móvil */
+
+    .hero {
+        margin: 0 15px;
+        height: 30vh;
+    }
+
+    .hero-overlay h1 { font-size: 1.5rem; }
+    .hero-overlay p { font-size: 0.9rem; }
+
+    /* Mostrar menú flotante de categorías en móviles */
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        position: fixed;
+        bottom: 25px;
+        right: 20px;
+        background-color: #1a1a1a;
+        color: #ffffff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        z-index: 9999;
+    }
+
+    /* Menú Lateral convertido a Panel Deslizante Lateral */
+    
+
+    .sidebar-menu.open {
+		left: 0;
+	}
+
+    .sidebar-close {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 2rem;
+        background: none;
+        border: none;
+        color: #333;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    /* Forzar rejilla perfecta de 2 columnas en teléfonos */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        padding: 0 10px 20px !important;
+    }
+
+    .category-title { margin: 25px 15px 10px; font-size: 1.4rem; }
+    .subcategory-title { margin: 20px 0 10px 15px !important; font-size: 1.1rem !important; }
+
+    /* Reducción proporcional de alturas para que quepan 2 tarjetas por pantalla */
+    .file-card img, .carousel-container {
+        height: 170px !important;
+    }
+
+    .file-card .file-info { padding: 10px; }
+    .file-card .file-info h4 { font-size: 0.85rem; }
+    .product-description { display: none; } /* Quitamos descripciones largas en móvil para evitar asimetrías */
+}

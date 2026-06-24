@@ -17,29 +17,46 @@ Aplicación web interactiva que funciona como catálogo digital para **Paufe Stu
 - **FontAwesome v6.0.0** (Iconografía de navegación)
 
 ## 📁 Estructura del Proyecto
-- `index.html`: Estructura del sitio y scripts interactivos.
-- `style.css`: Estilos visuales globales y diseño responsivo.
-- `/assets`: Carpeta que contiene las imágenes de los productos (formatos `.png`, `.jpeg`).
+- `index_5.html`: Estructura del sitio y scripts interactivos.
+- `style_2.css`: Estilos visuales globales y diseño responsivo.
 
-## 💻 Instalación y Despliegue Local
-1. Clona este repositorio:
-   ```bash
-   git clone [https://github.com/tu-usuario/WebPauFeStudio.git](https://github.com/tu-usuario/WebPauFeStudio.git)
-   ## 🚀 Flujo de Trabajo y Comandos Git
+---
 
-Si realizas cambios en el catálogo, utiliza los siguientes comandos estándar para guardar tu progreso.
+## 💻 Flujo de Trabajo y Comandos Git
 
-### 1. Guardar cambios (Commit habitual)
-Cada vez que agregues nuevos productos o modifiques los precios, ejecuta:
+Si realizas cambios cotidianos en el catálogo (actualizar precios, corregir textos o añadir productos), utiliza los siguientes comandos estándar para guardar tu progreso en Git:
+
 ```bash
-# Ver qué archivos han cambiado
+# 1. Ver qué archivos han cambiado o son nuevos
 git status
 
-# Añadir todos los cambios al escenario
+# 2. Añadir todos los cambios al escenario de preparación
 git add .
 
-# Guardar los cambios con un mensaje descriptivo
+# 3. Guardar los cambios con un mensaje descriptivo
 git commit -m "Feat: Añadidos nuevos ambientadores de yeso para coche y ajustes móviles"
 
-# Subir los cambios a GitHub (si usas repositorio remoto)
+# 4. Subir los cambios a tu repositorio de GitHub
 git push origin main
+
+#Opción A: Crear una Rama para una Campaña Nueva
+# 1. Asegúrate de estar en la rama principal y totalmente actualizada
+git checkout main
+git pull origin main
+
+# 2. Crea y muévete a la nueva rama estacional
+git checkout -b campaña-navidad
+
+# [!] En este punto ya puedes editar tu index_5.html: poner fotos de árboles, cambiar banners, añadir velas navideñas, etc.
+
+# 3. Guarda los cambios exclusivos de Navidad
+git add .
+git commit -m "Design: Cambiados colores a tonos rojos/dorados y añadidas velas de Navidad"
+
+# 4. Sube esta rama estacional a GitHub para que quede respaldada
+git push -u origin campaña-navidad
+
+
+#https://github.com/tu-usuario/WebPauFeStudio.git
+https://loren2013.github.io/paufe-studio/
+#https://paufestudio.netlify.app/
