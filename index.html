@@ -17,35 +17,49 @@
     <source src="audio/Where_Light_Settles.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- BARRA DE ANUNCIO -->
-  <div class="announcement-bar">
-    
-    <a href="https://wa.me/34614591836">Contáctanos por WhatsApp</a>
+<!-- BARRA DE ANUNCIO -->
+  <div class="announcement-bar" style="text-align: center; font-family: 'Jost', sans-serif; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; padding: 10px 0; background-color: var(--bg-dark, #1c1814); color: #fff;">
+    <span>Artesanía hecha a mano desde Madrid &nbsp;·&nbsp; Envíos gratis según pedido</span>
   </div>
 
   <!-- NAVBAR -->
-  <header class="navbar" id="navbar">
-    <div class="nav-left">
-      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menú categorías">
-        <i class="fas fa-bars"></i>
-      </button>
+  <header class="navbar" id="navbar" style="display: flex; flex-direction: column; background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; padding: 0;">
+    
+    <!-- FILA SUPERIOR: Logo y Canales de Comunicación -->
+    <div class="nav-top-row" style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 15px 40px; box-sizing: border-box;">
+      
+      <!-- LADO IZQUIERDO: Hamburguesa (Crucial para Móviles) -->
+      <div class="nav-left" style="flex: 1; display: flex; align-items: center;">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menú categorías" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-dark);">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      
+      <!-- CENTRO: Logotipo Principal -->
+      <div class="logo-container" style="flex: 1; display: flex; justify-content: center;">
+        <a href="#inicio">
+          <img src="cabecera-removebg.png" alt="Paufe Studio" class="logo" style="max-height: 50px; width: auto; display: block;">
+        </a>
+      </div>
+
+      <!-- DERECHA: Enlaces de Conversión Minimalistas -->
+      <div class="nav-right" style="flex: 1; display: flex; gap: 20px; align-items: center; justify-content: flex-end; font-family: 'Jost', sans-serif; font-size: 0.8rem; letter-spacing: 1.5px;">
+        <a href="https://www.instagram.com/paufestudio" target="_blank" rel="noopener" style="color: var(--text-dark); text-transform: uppercase; text-decoration: none; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">Instagram</a>
+        <a href="mailto:paufestudio@gmail.com" style="color: var(--text-dark); text-transform: uppercase; text-decoration: none; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">Email</a>
+        <a href="https://wa.me/34614591836?text=¡Hola!%20Me%20gustaría%20solicitar%20el%20catálogo%20completo%20de%20productos." target="_blank" rel="noopener" style="color: var(--text-dark); text-transform: uppercase; text-decoration: none; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">Catálogo</a>
+        <a href="https://wa.me/34614591836" target="_blank" rel="noopener" class="btn-contact" style="font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; background-color: var(--text-dark, #1c1814); color: #fff; padding: 8px 16px; border-radius: 2px; transition: background-color 0.3s; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.backgroundColor='#443e38'" onmouseout="this.style.backgroundColor='var(--text-dark, #1c1814)'">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
     </div>
-    <div class="logo-container">
-      <a href="#inicio">
-        <img src="cabecera-removebg.png" alt="Paufe Studio" class="logo">
-      </a>
-    </div>
-    <nav class="nav-links" aria-label="Navegación principal">
-      <a href="#yesos">Yesos</a>
-      <a href="#soja">Ambientadores</a>
-      <a href="#especiales">Eventos</a>
-      <a href="#faq">FAQ</a>
+
+    <!-- FILA INFERIOR: Categorías Comerciales (Solo Escritorio) -->
+    <nav class="nav-links" aria-label="Navegación comercial" style="display: flex; justify-content: center; gap: 35px; border-top: 1px solid #f2f0ed; width: 100%; padding: 12px 0; font-family: 'Jost', sans-serif; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; background-color: #faf9f6;">
+      <a href="#yesos" style="color: var(--text-dark); text-decoration: none; display: flex; align-items: center; gap: 6px;"><i class="fas fa-shapes" style="font-size: 0.9rem; opacity: 0.6;"></i> Yesos</a>
+      <a href="#soja" style="color: var(--text-dark); text-decoration: none; display: flex; align-items: center; gap: 6px;"><i class="fas fa-wind" style="font-size: 0.9rem; opacity: 0.6;"></i> Ambientadores</a>
+      <a href="#especiales" style="color: var(--text-dark); text-decoration: none; display: flex; align-items: center; gap: 6px;"><i class="fas fa-gift" style="font-size: 0.9rem; opacity: 0.6;"></i> Eventos</a>
+      <a href="#faq" style="color: var(--text-dark); text-decoration: none; display: flex; align-items: center; gap: 6px;"><i class="fas fa-question-circle" style="font-size: 0.9rem; opacity: 0.6;"></i> FAQ</a>
     </nav>
-    <div class="nav-right">
-      <a href="https://wa.me/34614591836?text=¡Hola!%20He%20visto%20la%20web%20y%20me%20gustaría%20pedir%20información." class="btn-contact">
-        <i class="fab fa-whatsapp"></i> Contacto
-      </a>
-    </div>
   </header>
 
   <!-- OVERLAY + SIDEBAR MÓVIL -->
@@ -94,24 +108,41 @@
     </div>
   </section>
 
-  <!-- PROPUESTA DE VALOR -->
+  <!-- PROPUESTA DE VALOR / NUESTRA HISTORIA -->
+  <section id="filosofia" class="values-section" aria-label="Nuestra filosofía" style="padding: 60px 20px; max-width: 1200px; margin: 0 auto; text-align: center;">
+    
+    <!-- PROPUESTA DE VALOR E HISTORIA -->
   <section id="filosofia" class="values-section" aria-label="Nuestra filosofía">
-    <div class="values-grid">
+    <div class="values-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+      
+      <!-- COLUMNA 1: HISTORIA -->
+      <div class="value-item">
+        <div class="value-icon" aria-hidden="true">✨</div>
+        <h3>Cómo nacimos</h3>
+        <p>Nos conocimos y, hablando de nuestras aficiones, descubrimos que compartíamos el mismo hobby: crear detalles artesanales para regalar a amigos y familia. Decidimos juntarnos para llegar a más gente y así nació <strong>PAUFE</strong> (Paula y Feli).</p>
+      </div>
+
+      <!-- COLUMNA 2 -->
       <div class="value-item">
         <div class="value-icon" aria-hidden="true">🌱</div>
         <h3>Ceras 100% naturales</h3>
         <p>Cera de soja pura y cera de abeja de origen vegetal y natural. Alternativa sostenible.</p>
       </div>
+
+      <!-- COLUMNA 3 -->
       <div class="value-item">
         <div class="value-icon" aria-hidden="true">✨</div>
         <h3>Ambiente armónico</h3>
         <p>Disfruta de una atmósfera cálida, delicada y agradable en tus espacios cotidianos.</p>
       </div>
+
+      <!-- COLUMNA 4 -->
       <div class="value-item">
         <div class="value-icon" aria-hidden="true">🏺</div>
         <h3>Alta resistencia</h3>
         <p>Nuestras piezas ofrecen una gran durabilidad y un acabado estético impecable para tu hogar.</p>
       </div>
+
     </div>
   </section>
 
@@ -613,20 +644,22 @@
           <a href="#faq">Preguntas Frecuentes</a>
         </div>
         <div class="footer-contact">
-          <h4>Contacto</h4>
-          <a href="https://www.instagram.com/paufestudio" target="_blank">
-            <i class="fab fa-instagram" aria-hidden="true"></i> @paufestudio
+          <h4>Contacto y Catálogo</h4>
+          <a href="https://www.instagram.com/paufestudio" target="_blank" rel="noopener">
+            <i class="fab fa-instagram" aria-hidden="true"></i> Instagram: @paufestudio
           </a>
           <a href="mailto:paufestudio@gmail.com">
-            <i class="far fa-envelope" aria-hidden="true"></i> paufestudio@gmail.com
+            <i class="far fa-envelope" aria-hidden="true"></i> Email: paufestudio@gmail.com
           </a>
-          <a href="https://wa.me/34614591836">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp
+          <a href="https://wa.me/34614591836?text=¡Hola!%20Me%20gustaría%20solicitar%20el%20catálogo%20completo%20de%20productos." target="_blank" rel="noopener">
+            <i class="fas fa-book-open" aria-hidden="true"></i> Solicitar Catálogo Completo
+          </a>
+          <a href="https://wa.me/34614591836" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp: +34 614 59 18 36
           </a>
         </div>
-      </div>
       <div class="footer-bottom">
-        <p>© 2025 Paufe Studio · Hecho con 🤍 en Madrid</p>
+        <p>© 2026 Paufe Studio · Hecho con 🤍 en Madrid</p>
       </div>
     </footer>
 

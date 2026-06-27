@@ -88,7 +88,7 @@ button { font-family: var(--font-body); }
 .nav-right { display: flex; justify-content: flex-end; align-items: center; }
 
 .logo-container { display: flex; justify-content: center; }
-.logo { height: 82px; width: auto; mix-blend-mode: multiply; }
+.logo { height: 100px; width: auto; mix-blend-mode: multiply; }
 
 .nav-links {
   display: flex;
