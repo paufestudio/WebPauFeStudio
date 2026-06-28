@@ -22,41 +22,58 @@ Aplicación web interactiva que funciona como catálogo digital para **Paufe Stu
 
 ---
 
-## 💻 Flujo de Trabajo y Comandos Git
+# PauFe Studio Web
 
-Si realizas cambios cotidianos en el catálogo (actualizar precios, corregir textos o añadir productos), utiliza los siguientes comandos estándar para guardar tu progreso en Git:
+Bienvenida al repositorio oficial de PauFe Studio. Aquí gestionamos el código de nuestra web.
+
+## 🚀 Flujo de trabajo profesional (Git Flow)
+
+Para mantener la estabilidad de la web, seguimos este flujo de trabajo utilizando ramas:
+#Antes tengo que comprobar que estoy en el repositorio adecuado
+ferna@Portatil MINGW64 ~/Documents/Feli_Velas/paufe-studio-web (develop)
+$ git remote -v
+origin  https://github.com/paufestudio/WebPauFeStudio.git (fetch)
+origin  https://github.com/paufestudio/WebPauFeStudio.git (push)
+
+
+1. **Trabajar en una rama nueva:**
+   Cada vez que vayas a realizar un cambio o añadir algo nuevo:
+   ```bash
+   git checkout develop
+   git pull origin develop
+   git checkout -b nombre-de-tu-tarea
+   Guardar cambios:
+Una vez hechos tus cambios:
+
+Bash
+git add .
+git commit -m "Descripción clara de los cambios realizados"
+Integrar cambios:
+Cuando tu tarea esté terminada y probada:
+
+Bash
+git checkout develop
+git merge nombre-de-tu-tarea
+git push origin develop
+Publicar en Producción:
+Cuando estés lista para que los cambios se vean en la web oficial:
+
+Bash
+git checkout main
+git merge develop
+git push origin main
+Nota: Recuerda trabajar siempre desde develop para evitar errores en la rama principal (main).
+
+
+***
+
+### ¿Cómo añadirlo ahora mismo?
+Si ya tienes abierto tu editor (o usando la terminal):
+
+1. **Abre el archivo `README.md`** y pega ese texto al final.
+2. **Guárdalo** y luego, para que se suba al repositorio:
 
 ```bash
-# 1. Ver qué archivos han cambiado o son nuevos
-git status
-
-# 2. Añadir todos los cambios al escenario de preparación
-git add .
-
-# 3. Guardar los cambios con un mensaje descriptivo
-git commit -m "Feat: Añadidos nuevos ambientadores de yeso para coche y ajustes móviles"
-
-# 4. Subir los cambios a tu repositorio de GitHub
+git add README.md
+git commit -m "Documentación: Añadido flujo de trabajo profesional al README"
 git push origin main
-
-#Opción A: Crear una Rama para una Campaña Nueva
-# 1. Asegúrate de estar en la rama principal y totalmente actualizada
-git checkout main
-git pull origin main
-
-# 2. Crea y muévete a la nueva rama estacional
-git checkout -b campaña-navidad
-
-# [!] En este punto ya puedes editar tu index_5.html: poner fotos de árboles, cambiar banners, añadir velas navideñas, etc.
-
-# 3. Guarda los cambios exclusivos de Navidad
-git add .
-git commit -m "Design: Cambiados colores a tonos rojos/dorados y añadidas velas de Navidad"
-
-# 4. Sube esta rama estacional a GitHub para que quede respaldada
-git push -u origin campaña-navidad
-
-
-#https://github.com/tu-usuario/WebPauFeStudio.git
-https://loren2013.github.io/paufe-studio/
-#https://paufestudio.netlify.app/
