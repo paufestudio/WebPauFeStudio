@@ -611,6 +611,150 @@ button { font-family: var(--font-body); }
 .events-banner .btn-primary:hover { background: var(--gold-dark); }
 
 /* =========================================
+   GRID DE MOMENTOS ESPECIALES (2 columnas tipo ficha)
+========================================= */
+.especiales-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.especial-card {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+/* La imagen/carrusel dentro de la ficha especial */
+.especial-card > img,
+.especial-card .carousel-container {
+  height: auto;
+  min-height: 180px;
+  width: 40%;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* Ficha compacta (poco contenido de texto) */
+.especial-card--compact {
+  max-height: 260px;
+  overflow: hidden;
+}
+
+/* Info dentro de la ficha especial */
+.especial-info {
+  padding: 20px 20px 24px;
+  flex: 1;
+}
+
+.especial-info h4 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.especial-info .product-description {
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  line-height: 1.55;
+  margin-bottom: 14px;
+  font-style: italic;
+}
+
+/* Lista de características dentro de la ficha */
+.eventos-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+}
+
+.eventos-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.83rem;
+  color: var(--text-mid);
+  margin-bottom: 8px;
+  line-height: 1.45;
+}
+
+.eventos-features .fas.fa-check-circle {
+  color: var(--gold);
+  font-size: 0.85rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* Responsive: apilar en móvil */
+@media (max-width: 768px) {
+  .especiales-grid {
+    grid-template-columns: 1fr;
+  }
+  .especial-card {
+    flex-direction: column;
+  }
+  .especial-card > img,
+  .especial-card .carousel-container {
+    width: 100%;
+    height: 220px;
+  }
+}
+
+/* Corrección para la sección de Eventos (mantener compatibilidad) */
+.eventos-intro {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 40px !important;
+  margin-bottom: 60px !important;
+  padding: 20px 0 !important;
+}
+
+.eventos-intro-text {
+  flex: 1;
+  max-width: 50%;
+}
+
+.eventos-intro-image {
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+
+/* Ajuste para que el carrusel se adapte bien */
+.eventos-intro-image .carousel-container {
+  height: 350px !important;
+  border-radius: var(--radius-md);
+}
+
+.eventos-eyebrow-small {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.btn-eventos-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #25D366; /* Color WhatsApp */
+  color: white;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+/* =========================================
    FAQ
 ========================================= */
 .faq-section { padding: 20px 0 60px; }
@@ -871,6 +1015,14 @@ button { font-family: var(--font-body); }
   .footer-bottom { padding: 16px 24px; }
 
   .whatsapp-float { bottom: 20px; right: 16px; width: 50px; height: 50px; font-size: 1.4rem; }
+  .eventos-intro {
+    flex-direction: column;
+    text-align: center;
+  }
+  .eventos-intro-text, .eventos-intro-image {
+    max-width: 100%;
+  }
+
 }
 
 @media (max-width: 400px) {

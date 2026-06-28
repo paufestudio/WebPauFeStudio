@@ -7,7 +7,6 @@
   <meta name="description" content="Descubre Paufe Studio. Figuras decorativas de yeso artesanal y velas de cera de soja pura 100% natural. Detalles para eventos y decoración sostenible desde Madrid."><title>Paufe Studio | Velas de Soja, Yeso Artesanal y Decoración Sostenible</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="favicon.png">
 </head>
@@ -17,48 +16,48 @@
     <source src="audio/Where_Light_Settles.mp3" type="audio/mpeg">
   </audio>
 
-<!-- BARRA DE ANUNCIO -->
-  <div class="announcement-bar" style="text-align: center; font-family: 'Jost', sans-serif; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; padding: 10px 0; background-color: var(--bg-dark, #1c1814); color: #fff;">
+  <!-- BARRA DE ANUNCIO -->
+  <div class="announcement-bar">
     <span>Artesanía hecha a mano</span>
   </div>
 
   <!-- NAVBAR -->
-  <header class="navbar" id="navbar" style="display: flex; flex-direction: column; background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; padding: 0;">
+  <header class="navbar" id="navbar">
     
     <!-- FILA SUPERIOR: Logo y Canales de Comunicación -->
-    <div class="nav-top-row" style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 15px 40px; box-sizing: border-box;">
+    <div class="nav-top-row">
       
       <!-- LADO IZQUIERDO: Hamburguesa (Crucial para Móviles) -->
-      <div class="nav-left" style="flex: 1; display: flex; align-items: center;">
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menú categorías" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-dark);">
+      <div class="nav-left">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menú categorías">
           <i class="fas fa-bars"></i>
         </button>
       </div>
       
       <!-- CENTRO: Logotipo Principal -->
-      <div class="logo-container" style="flex: 1; display: flex; justify-content: center;">
+      <div class="logo-container">
         <a href="#inicio">
-          <img src="cabecera-removebg.png" alt="Paufe Studio" class="logo" style="max-height: 50px; width: auto; display: block;">
+          <img src="cabecera-removebg.png" alt="Paufe Studio" class="logo">
         </a>
       </div>
 
       <!-- DERECHA: Enlaces de Conversión Minimalistas -->
-      <div class="nav-right" style="flex: 1; display: flex; gap: 20px; align-items: center; justify-content: flex-end; font-family: 'Jost', sans-serif; font-size: 0.8rem; letter-spacing: 1.5px;">
-        <a href="https://www.instagram.com/paufestudio" target="_blank" rel="noopener" style="color: var(--text-dark); text-transform: uppercase; text-decoration: none; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">Instagram</a>
-        <a href="mailto:paufestudio@gmail.com" style="color: var(--text-dark); text-transform: uppercase; text-decoration: none; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">Email</a>
-        <a href="https://wa.me/34614591836?text=¡Hola!%20Me%20gustaría%20solicitar%20el%20catálogo%20completo%20de%20productos." target="_blank" rel="noopener" style="color: var(--text-dark); text-transform: uppercase; text-decoration: none; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">Catálogo</a>
-        <a href="https://wa.me/34614591836" target="_blank" rel="noopener" class="btn-contact" style="font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; background-color: var(--text-dark, #1c1814); color: #fff; padding: 8px 16px; border-radius: 2px; transition: background-color 0.3s; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.backgroundColor='#443e38'" onmouseout="this.style.backgroundColor='var(--text-dark, #1c1814)'">
+      <div class="nav-right">
+        <a href="https://www.instagram.com/paufestudio" target="_blank" rel="noopener" class="nav-link-simple">Instagram</a>
+        <a href="mailto:paufestudio@gmail.com" class="nav-link-simple">Email</a>
+        <a href="https://wa.me/34614591836?text=¡Hola!%20Me%20gustaría%20solicitar%20el%20catálogo%20completo%20de%20productos." target="_blank" rel="noopener" class="nav-link-simple">Catálogo</a>
+        <a href="https://wa.me/34614591836" target="_blank" rel="noopener" class="btn-contact">
           <i class="fab fa-whatsapp"></i> WhatsApp
         </a>
       </div>
     </div>
 
     <!-- FILA INFERIOR: Categorías Comerciales (Solo Escritorio) -->
-    <nav class="nav-links" aria-label="Navegación comercial" style="display: flex; justify-content: center; gap: 35px; border-top: 1px solid #f2f0ed; width: 100%; padding: 12px 0; font-family: 'Jost', sans-serif; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; background-color: #faf9f6;">
-      <a href="#yesos" style="color: var(--text-dark); text-decoration: none; display: flex; align-items: center; gap: 6px;"><i class="fas fa-shapes" style="font-size: 0.9rem; opacity: 0.6;"></i> Yesos</a>
-      <a href="#soja" style="color: var(--text-dark); text-decoration: none; display: flex; align-items: center; gap: 6px;"><i class="fas fa-wind" style="font-size: 0.9rem; opacity: 0.6;"></i> Ambientadores</a>
-      <a href="#especiales" style="color: var(--text-dark); text-decoration: none; display: flex; align-items: center; gap: 6px;"><i class="fas fa-gift" style="font-size: 0.9rem; opacity: 0.6;"></i> Eventos</a>
-      <a href="#faq" style="color: var(--text-dark); text-decoration: none; display: flex; align-items: center; gap: 6px;"><i class="fas fa-question-circle" style="font-size: 0.9rem; opacity: 0.6;"></i> FAQ</a>
+    <nav class="nav-links" aria-label="Navegación comercial">
+      <a href="#yesos" class="nav-link-item"><i class="fas fa-shapes"></i> Yesos</a>
+      <a href="#soja" class="nav-link-item"><i class="fas fa-wind"></i> Ambientadores</a>
+      <a href="#especiales" class="nav-link-item"><i class="fas fa-gift"></i> Eventos</a>
+      <a href="#faq" class="nav-link-item"><i class="fas fa-question-circle"></i> FAQ</a>
     </nav>
   </header>
 
@@ -95,8 +94,9 @@
   <section id="inicio" class="hero" aria-label="Inicio">
     <div class="hero-bg" id="heroBg"></div>
     <div class="hero-overlay">
-      <span class="hero-eyebrow">Artesanía hecha con el corazón</span>
+      <span class="hero-eyebrow">Artesanía desde Madrid</span>
       <h1>Paufe Studio</h1>
+      <span class="hero-ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
       <p>Yeso artesanal &nbsp;·&nbsp; Velas de soja &nbsp;·&nbsp; Alma en cada pieza</p>
       <div class="hero-actions">
         <a href="#yesos" class="btn-primary">Ver colección</a>
@@ -107,95 +107,105 @@
       <i class="fas fa-chevron-down"></i>
     </div>
   </section>
-<!-- PROPUESTA DE VALOR / NUESTRA HISTORIA -->
-  <section id="filosofia" class="values-section" aria-label="Nuestra filosofía" style="padding: 60px 20px; max-width: 1200px; margin: 0 auto; text-align: center; box-sizing: border-box;">
+
+  <!-- PROPUESTA DE VALOR / NUESTRA HISTORIA -->
+  <section id="filosofia" class="values-section" aria-label="Nuestra filosofía">
     
     <!-- CUADRÍCULA DE LAS 4 CARACTERÍSTICAS -->
-    <div class="values-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 40px;">
+    <div class="values-grid">
       
       <!-- COLUMNA 1: HISTORIA -->
-      <div class="value-item" style="background-color: #faf9f6; padding: 30px 20px; border-radius: 4px; box-sizing: border-box;">
-        <div class="value-icon" aria-hidden="true" style="font-size: 1.8rem; margin-bottom: 12px;">✨</div>
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 10px;">Cómo nacimos</h3>
-        <p style="font-size: 0.88rem; line-height: 1.4; color: #555;">Nos conocimos y, compartiendo hobbys, descubrimos la pasión por crear detalles artesanales para regalar a amigos y familia. ¡Así nació <strong>PAUFE</strong>!</p>
+      <div class="value-item">
+        <div class="value-icon" aria-hidden="true">✨</div>
+        <h3>Cómo nacimos</h3>
+        <p>Nos conocimos y, compartiendo hobbys, descubrimos la pasión por crear detalles artesanales para regalar a amigos y familia. ¡Así nació <strong>PAUFE</strong>!</p>
       </div>
 
       <!-- COLUMNA 2: CERAS -->
-      <div class="value-item" style="background-color: #faf9f6; padding: 30px 20px; border-radius: 4px; box-sizing: border-box;">
-        <div class="value-icon" aria-hidden="true" style="font-size: 1.8rem; margin-bottom: 12px;">🌱</div>
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 10px;">Ceras 100% naturales</h3>
-        <p style="font-size: 0.88rem; line-height: 1.4; color: #555;">Cera de soja y de abeja de origen vegetal. Una elección artesanal y consciente para disfrutar de tus espacios con calidez.</p>
+      <div class="value-item">
+        <div class="value-icon" aria-hidden="true">🌱</div>
+        <h3>Ceras 100% naturales</h3>
+        <p>Cera de soja pura y de abeja de origen vegetal. Una alternativa completamente sostenible para cuidar de ti y del medio ambiente.</p>
       </div>
 
       <!-- COLUMNA 3: AMBIENTE -->
-      <div class="value-item" style="background-color: #faf9f6; padding: 30px 20px; border-radius: 4px; box-sizing: border-box;">
-        <div class="value-icon" aria-hidden="true" style="font-size: 1.8rem; margin-bottom: 12px;">🕯️</div>
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 10px;">Ambiente armónico</h3>
-        <p style="font-size: 0.88rem; line-height: 1.4; color: #555;">Disfruta de una atmósfera cálida, delicada y agradable en tus espacios cotidianos. Transforma tu casa en un templo de calma.</p>
+      <div class="value-item">
+        <div class="value-icon" aria-hidden="true">🕯️</div>
+        <h3>Ambiente armónico</h3>
+        <p>Disfruta de una atmósfera cálida, delicada y agradable en tus espacios cotidianos. Transforma tu casa en un templo de calma.</p>
       </div>
 
       <!-- COLUMNA 4: RESISTENCIA -->
-      <div class="value-item" style="background-color: #faf9f6; padding: 30px 20px; border-radius: 4px; box-sizing: border-box;">
-        <div class="value-icon" aria-hidden="true" style="font-size: 1.8rem; margin-bottom: 12px;">🏺</div>
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 10px;">Alta resistencia</h3>
-        <p style="font-size: 0.88rem; line-height: 1.4; color: #555;">Nuestras piezas ofrecen gran durabilidad y un acabado estético impecable para tu hogar gracias al polvo cerámico de alta calidad.</p>
+      <div class="value-item">
+        <div class="value-icon" aria-hidden="true">🏺</div>
+        <h3>Alta resistencia</h3>
+        <p>Nuestras piezas ofrecen gran durabilidad y un acabado estético impecable para tu hogar gracias al polvo cerámico de alta calidad.</p>
       </div>
     </div>
 
-    <!-- SECCIÓN DESTACADA: BANNER HORIZONTAL (Antigua Columna 5) -->
-    <div class="banner-historias" style="background-color: #f2ede6; border: 1px dashed #d1c7bd; padding: 35px 40px; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; max-width: 100%; box-sizing: border-box;">
-      <div class="value-icon" aria-hidden="true" style="font-size: 2rem;">💝</div>
-      <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin: 0; color: var(--text-dark); line-height: 1.2;">¡Cuéntanos tu historia y creemos algo juntos!</h3>
-      <p style="font-size: 0.95rem; line-height: 1.5; color: #443e38; max-width: 800px; margin: 0;">
+    <!-- SECCIÓN DESTACADA: BANNER HORIZONTAL -->
+    <div class="banner-historias">
+      <div class="value-icon large" aria-hidden="true">💝</div>
+      <h3>¡Cuéntanos tu historia y creemos algo juntos!</h3>
+      <p>
         Estamos deseando que contactes con nosotras y nos cuentes tu idea. Ya sea para un evento especial, un detalle único para regalar o simplemente para darte un capricho y regalarte a ti misma, ¡lo hacemos realidad!
       </p>
-      <a href="https://wa.me/34614591836?text=¡Hola!%20Me%20encantaría%20contaros%20mi%20idea%20para%20un%20regalo%20especial." target="_blank" rel="noopener" style="font-family: 'Jost', sans-serif; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: #fff; background-color: var(--text-dark, #1c1814); padding: 12px 28px; border-radius: 2px; transition: background-color 0.3s; display: inline-flex; align-items: center; gap: 8px; margin-top: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);" onmouseover="this.style.backgroundColor='#443e38'" onmouseout="this.style.backgroundColor='var(--text-dark, #1c1814)'">
+      <a href="https://wa.me/34614591836?text=¡Hola!%20Me%20encantaría%20contaros%20mi%20idea%20para%20un%20regalo%20especial." target="_blank" rel="noopener" class="btn-historias">
         <i class="fab fa-whatsapp"></i> Hablar con nosotras
       </a>
     </div>
 
   </section>
+
   <!-- CONTENIDO PRINCIPAL -->
   <main class="main-content">
 
     <!-- SECCIÓN: YESOS -->
     <section id="yesos" aria-label="Yesos">
       <div class="section-header">
+        <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
         <h2 class="category-title">Yesos</h2>
-        <p>Utilizamos un polvo cerámico de alta calidad que permite un acabado suave al tacto y un tono blanco muy natural, aportando elegancia y durabilidad a cada pieza.</p>
-    </div>
-      <div class="value-item">
-  
+        <p class="section-subtitle">Figuras y piezas decorativas moldeadas a mano con polvo cerámico premium</p>
+      </div>
 
       <h3 class="subcategory-title" id="yesos-ambientadores">Ambientadores de Yeso</h3>
       <div class="products-grid">
 
         <div class="file-card">
-          <img src="AmbientadoresYeso.jpeg" alt="Ambientador de yeso blanco con difusor" loading="lazy">
+          <img src="AmbientadoresYeso.jpeg" alt="Ambientador de yeso blanco artesanal con difusor de fragancia 10ml" loading="lazy">
           <div class="file-info">
-            <h4>Ambientador Yeso Blanco con Difusor</h4>
-            <p class="product-description">Con difusor incorporado. Perfecto para habitaciones y espacios pequeños.</p>
-            <p class="product-measurements"><i class="fas fa-ruler-vertical" aria-hidden="true"></i> ~7 cm de alto</p>
+            <h4>Ambientador Yeso Blanco</h4>
+            <p class="product-description">Yeso artesanal con acabado ultrablanco. Incluye difusor de fragancia de 10 ml.</p>
+            <div class="product-tags">
+              <span class="tag"><i class="fas fa-wind" aria-hidden="true"></i> Difusor 10 ml incluido</span>
+            </div>
+            <p class="product-measurements"><i class="fas fa-ruler-vertical" aria-hidden="true"></i> ~7  cm de alto</p>
             <span class="file-price">5,50 €</span>
           </div>
         </div>
 
         <div class="file-card">
-          <img src="AmbientadoresYesoFlor.jpeg" alt="Ambientador de yeso con flor natural seca" loading="lazy">
+          <img src="AmbientadoresYesoFlor.jpeg" alt="Ambientador de yeso con flor natural seca y difusor 10ml" loading="lazy">
           <div class="file-info">
             <h4>Ambientador Yeso con Flor</h4>
-            <p class="product-description">Decorado con flores naturales secas. Un toque elegante para cualquier rincón.</p>
-            <p class="product-measurements"><i class="fas fa-ruler-vertical" aria-hidden="true"></i> ~7 cm de alto</p>
+            <p class="product-description">Decorado con flores naturales secas. Incluye difusor de fragancia de 10 ml.</p>
+            <div class="product-tags">
+              <span class="tag"><i class="fas fa-wind" aria-hidden="true"></i> Difusor 10 ml incluido</span>
+            </div>
+            <p class="product-measurements"><i class="fas fa-ruler-vertical" aria-hidden="true"></i> ~7  cm de alto</p>
             <span class="file-price">7,00 €</span>
           </div>
         </div>
 
         <div class="file-card">
-          <img src="AmbientadoreYesoFlorColores.jpeg" alt="Ambientador de yeso con flores de colores" loading="lazy">
+          <img src="AmbientadoreYesoFlorColores.jpeg" alt="Ambientador de yeso con flores de colores y difusor 10ml" loading="lazy">
           <div class="file-info">
             <h4>Ambientador Yeso con Flor Colores</h4>
-            <p class="product-description">Flores naturales en tonos variados. Diseño vibrante y atractivo.</p>
-            <p class="product-measurements"><i class="fas fa-ruler-vertical" aria-hidden="true"></i> ~7 cm de alto</p>
+            <p class="product-description">Flores naturales en tonos variados. Incluye difusor de fragancia de 10 ml.</p>
+            <div class="product-tags">
+              <span class="tag"><i class="fas fa-wind" aria-hidden="true"></i> Difusor 10 ml incluido</span>
+            </div>
+            <p class="product-measurements"><i class="fas fa-ruler-vertical" aria-hidden="true"></i> ~7  cm de alto</p>
             <span class="file-price">7,50 €</span>
           </div>
         </div>
@@ -212,7 +222,7 @@
           <div class="file-info">
             <h4>Ambientador Yeso con Hoja Seca</h4>
             <p class="product-description">Decorado con hoja seca natural. Estilo minimalista con variantes de diseño.</p>
-            <p class="product-measurements"><i class="fas fa-ruler-vertical" aria-hidden="true"></i> ~7 cm de alto</p>
+            <p class="product-measurements"><i class="fas fa-ruler-vertical" aria-hidden="true"></i> ~7  cm de alto</p>
             <span class="file-price">6,50 €</span>
           </div>
         </div>
@@ -229,7 +239,7 @@
           <div class="file-info">
             <h4>Ambientador Yeso (Modelos Múltiples)</h4>
             <p class="product-description">Diseños exclusivos para complementar cualquier rincón de tu hogar.</p>
-            <p class="product-measurements"><i class="fas fa-ruler-vertical" aria-hidden="true"></i> ~7 cm de alto</p>
+            <p class="product-measurements"><i class="fas fa-ruler-vertical" aria-hidden="true"></i> ~7  cm de alto</p>
             <span class="file-price">6,50 €</span>
           </div>
         </div>
@@ -239,7 +249,7 @@
           <div class="file-info">
             <h4>Ambientador Yeso Modelo Cactus</h4>
             <p class="product-description">Diseño clásico que encaja en cualquier estilo de decoración.</p>
-            <p class="product-measurements"><i class="fas fa-ruler-vertical" aria-hidden="true"></i> ~7 cm de alto</p>
+            <p class="product-measurements"><i class="fas fa-ruler-vertical" aria-hidden="true"></i> ~7  cm de alto</p>
             <span class="file-price">7,50 €</span>
           </div>
         </div>
@@ -257,9 +267,7 @@
           <div class="file-info">
             <h4>Ambientador Yeso para Coche</h4>
             <p class="product-description">Flor de yeso con sistema de clip. Fórmula artesanal resistente al calor.</p>
-            <span class="file-price">
-              <span class="price-original">6,00 €</span> 5,00 €
-            </span>
+            <span class="price-original">6,00 €</span> 5,00 €
           </div>
         </div>
 
@@ -298,8 +306,7 @@
         </div>
 
         <div class="file-card product-card">
-          
-		  <span class="badge-novedad badge-oferta">Oferta</span>
+          <span class="badge-novedad badge-oferta">Oferta</span>
           <div class="carousel-container" id="carousel-bandeja-anillos">
             <div class="carousel-inner">
               <img src="BandejaAnillos.png" class="active" alt="Bandeja de yeso minimalista para anillos y joyas" loading="lazy">
@@ -312,35 +319,32 @@
             <h4>Bandeja Anillos</h4>
             <p class="product-description">Elegante y minimalista. Ideal para organizar anillos y joyas.</p>
             <p class="product-measurements"><i class="fas fa-ruler-combined" aria-hidden="true"></i> 25 × 11 cm</p>
-            <!-- Actualización de precios y acabados -->
-			<span class="file-price">
-			  <span class="price-original">18,00 €</span> 12,75 € <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-mid);">(Blanco sencillo)</span>
-			  <div style="font-size: 0.85rem; font-weight: normal; color: var(--text-mid); margin-top: 4px;">Otros acabados: 18,00 €</div>
-			</span>
-          </div>
-        </div>
-
-          <div class="file-card product-card">
-          <div class="carousel-container" id="carousel-platos">
-            <div class="carousel-inner">
-              <img src="plato.jpeg" class="active" alt="Plato de yeso sencillo" loading="lazy">
-              <img src="platoMoto.jpeg" alt="Plato de yeso con diseño moto" loading="lazy">
-            </div>
-            <button class="nav-btn prev" onclick="cambiarSlide('carousel-platos', -1)" aria-label="Imagen anterior">&#10094;</button>
-            <button class="nav-btn next" onclick="cambiarSlide('carousel-platos', 1)" aria-label="Imagen siguiente">&#10095;</button>
-          </div>
-          <div class="file-info">
-            <h4>Plato de Yeso</h4>
-            <p class="product-description">Base perfecta para velas o elemento decorativo. Disponible liso o con diseño decorado.</p>
-            <p class="product-measurements"><i class="fas fa-circle-dot" aria-hidden="true"></i> 15 cm de diámetro</p>
             <span class="file-price">
-              5,99 € <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-mid);">(Sencillo)</span>
-              <div style="font-size: 0.85rem; font-weight: normal; color: var(--text-mid); margin-top: 4px;">Decorado: 8,99 €</div>
+              <span class="price-original">18,00 €</span> 12,75 € <span class="price-note">(Blanco sencillo)</span>
+              <div class="price-other">Otros acabados: 18,00 €</div>
             </span>
           </div>
         </div>
 
-      </div>
+        <div class="file-card">
+          <img src="plato.jpeg" alt="Plato de yeso sencillo" loading="lazy">
+          <div class="file-info">
+            <h4>Plato Sencillo</h4>
+            <p class="product-description">Base perfecta para velas o elemento decorativo.</p>
+            <p class="product-measurements"><i class="fas fa-circle-dot" aria-hidden="true"></i> 15 cm de diámetro</p>
+            <span class="file-price">5,99 €</span>
+          </div>
+        </div>
+
+        <div class="file-card">
+          <img src="platoMoto.jpeg" alt="Plato de yeso con diseño moto" loading="lazy">
+          <div class="file-info">
+            <h4>Plato Moto</h4>
+            <p class="product-description">Diseño único con patrón moto. Para decoradores con personalidad.</p>
+            <p class="product-measurements"><i class="fas fa-circle-dot" aria-hidden="true"></i> 15 cm de diámetro</p>
+            <span class="file-price">8,99 €</span>
+          </div>
+        </div>
 
       </div>
 
@@ -474,6 +478,7 @@
     <!-- SECCIÓN: AMBIENTADORES DE SOJA -->
     <section id="soja" aria-label="Ambientadores de Soja">
       <div class="section-header">
+        <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
         <h2 class="category-title">Ambientadores de Soja</h2>
         <p class="section-subtitle">Cera vegetal 100% natural &nbsp;·&nbsp; Sin tóxicos &nbsp;·&nbsp; Combustión limpia</p>
       </div>
@@ -531,12 +536,12 @@
           <img src="VelaSoja.jpeg" alt="Vela de cera de soja natural con plato" loading="lazy">
           <div class="file-info">
             <h4>Vela de Soja con Plato</h4>
-            <p class="product-description">100% natural. De óptima duración y aromas premium de gran calidad.</p>
-            <span class="file-price">5,99 €</span>
+            <p class="product-description">100% natural. Sin tóxicos, larga duración y aromas premium.</p>
+            <span class="file-price">4,99 €</span>
           </div>
         </div>
 
-        <div class="file-card">
+       <div class="file-card">
           <span class="badge-novedad badge-oferta">Oferta</span>
           <img src="VelaSojaFlor.jpeg" alt="Vela de cera de soja con flor decorativa" loading="lazy">
           <div class="file-info">
@@ -551,101 +556,113 @@
       </div>
     </section>
 
-       <!-- SECCIÓN: MOMENTOS ESPECIALES -->
+<!-- SECCIÓN: MOMENTOS ESPECIALES -->
 <section id="especiales" aria-label="Momentos especiales">
-  <div class="section-header">   
+  <div class="section-header">
+    <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
     <h2 class="category-title">Momentos Especiales</h2>
     <p class="section-subtitle">Bodas &nbsp;·&nbsp; Bautizos &nbsp;·&nbsp; Comuniones &nbsp;·&nbsp; Regalos personalizados</p>
   </div>
 
-  <!-- Grid de 2 columnas tipo ficha de producto -->
-  <div class="especiales-grid">
-
-    <!-- FICHA 1: Detalles para invitados -->
-    <div class="file-card especial-card">
-      <div class="carousel-container" id="carousel-eventos-intro">
-        <div class="carousel-inner">
-          <img src="AmbientadorArmarios.jpeg" class="active" alt="Ambientadores personalizados" loading="lazy">
-          <img src="BandejaVelaSojaConNombre.jpeg" alt="Bandeja personalizada" loading="lazy">
-        </div>
-        <button class="nav-btn prev" onclick="cambiarSlide('carousel-eventos-intro', -1)">&#10094;</button>
-        <button class="nav-btn next" onclick="cambiarSlide('carousel-eventos-intro', 1)">&#10095;</button>
-      </div>
-      <div class="file-info especial-info">
-        <span class="eventos-eyebrow-small">Detalles para invitados</span>
-        <h4>Cada boda, bautizo o comunión merece un recuerdo único</h4>
-        <p class="product-description">Creamos piezas personalizadas con el <strong>nombre, fecha e imagen</strong> que elijas.</p>
-        <ul class="eventos-features">
-          <li><i class="fas fa-check-circle"></i> <strong>Ambientador (5,99 €):</strong> 7 cm. Difusor 10 ml incluido.</li>
-          <li><i class="fas fa-check-circle"></i> <strong>Bandeja (12,00 €):</strong> 20 × 15 cm. Vela de soja con aroma.</li>
-          <li><i class="fas fa-check-circle"></i> <strong>Personalización:</strong> Nombre, fecha en cada pieza, decoración.</li>
-        </ul>
-        <a href="https://wa.me/34614591836?text=¡Hola!%20Me%20gustaría%20un%20presupuesto%20para%20detalles%20de%20evento." class="btn-eventos-wa">
-          <i class="fab fa-whatsapp"></i> Pedir presupuesto para eventos
-        </a>
-      </div>
+  <!-- Detalles para invitados -->
+  <div class="eventos-intro">
+    <div class="eventos-intro-text">
+      <span class="eventos-eyebrow-small">Detalles para invitados</span>
+      <h3>Cada boda, bautizo o comunión merece un recuerdo único</h3>
+      <p>Creamos piezas personalizadas con el <strong>nombre, fecha e imagen</strong> que elijas.</p>
+      
+      <ul class="eventos-features">
+        <li><i class="fas fa-check-circle"></i> <strong>Ambientador (5,99 €):</strong> 7 cm de alto. Incluye difusor 10 ml a elegir.</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Bandeja (12,00 €):</strong> 20 × 15 cm. Vela de soja con aroma a elegir.</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Personalización:</strong> Incluye nombre y fecha en cada pieza[cite: 6].</li>
+      </ul>
+      
+      <a href="https://wa.me/34614591836?text=¡Hola!%20Me%20gustaría%20un%20presupuesto%20para%20detalles%20de%20evento." class="btn-eventos-wa">
+        <i class="fab fa-whatsapp"></i> Pedir presupuesto para eventos
+      </a>
     </div>
 
-    <!-- FICHA 2: Cuadros personalizados -->
-    <div class="file-card especial-card">
-      <div class="carousel-container" id="carousel-cuadros-fe">
-        <div class="carousel-inner">
-          <img src="Virgenes/CuadroBaturizoComunionVirgen.png" class="active" alt="Cuadro Recordatorio Comuniones y bautizo" loading="lazy">
-          <img src="Virgenes/CuadroVirgen.png" alt="Cuadro Virgen personalizado para bautizo y comunión" loading="lazy">
-        </div>
-        <button class="nav-btn prev" onclick="cambiarSlide('carousel-cuadros-fe', -1)" aria-label="Anterior">&#10094;</button>
-        <button class="nav-btn next" onclick="cambiarSlide('carousel-cuadros-fe', 1)" aria-label="Siguiente">&#10095;</button>
+    <div class="eventos-intro-image carousel-container" id="carousel-eventos-intro">
+      <div class="carousel-inner">
+        <img src="AmbientadorArmarios.jpeg" class="active" alt="Ambientadores personalizados" loading="lazy">
+        <img src="BandejaVelaSojaConNombre.jpeg" alt="Bandeja personalizada" loading="lazy">
       </div>
-      <div class="file-info especial-info">
-        <span class="eventos-eyebrow-small">Regalos con significado</span>
-        <h4>Un recuerdo eterno para un día inolvidable</h4>
-        <p class="product-description">Cuadros artesanales personalizados con <strong>oración, nombre y fecha</strong> para el protagonista del día.</p>
-        <ul class="eventos-features">
-          <li><i class="fas fa-check-circle"></i> <strong>Precio:</strong> Desde 25,00 €.</li>
-          <li><i class="fas fa-check-circle"></i> <strong>Medidas:</strong> 25 × 25 cm.</li>
-          <li><i class="fas fa-check-circle"></i> <strong>Totalmente personalizado:</strong> Oración, nombre y fecha.</li>
-          <li><i class="fas fa-check-circle"></i> <strong>Ideal para:</strong> Bautizos y Primeras Comuniones.</li>
-        </ul>
-        <a href="https://wa.me/34614591836?text=¡Hola!%20Me%20gustaría%20encargar%20un%20cuadro%20personalizado%20para%20un%20bautizo/comunión." class="btn-eventos-wa">
-          <i class="fab fa-whatsapp"></i> Personalizar mi cuadro
-        </a>
-      </div>
+      <button class="nav-btn prev" onclick="cambiarSlide('carousel-eventos-intro', -1)">&#10094;</button>
+      <button class="nav-btn next" onclick="cambiarSlide('carousel-eventos-intro', 1)">&#10095;</button>
     </div>
-
   </div>
-</section>
+  
+  <!-- Detalles para regalar bautizo, comunion -->
 
-<!-- SECCIÓN: REGALOS PARA MAMÁ -->
-<section id="mama" aria-label="Regalos para Mamá">
-  <div class="section-header">   
+  <div class="eventos-intro">
+    <!-- Texto e Información -->
+    <div class="eventos-intro-text">
+      <span class="eventos-eyebrow-small">Regalos con significado</span>
+      <h3>Un recuerdo eterno para un día inolvidable</h3>
+      <p>Creamos cuadros artesanales personalizados con <strong>oración, nombre y fecha</strong>, convirtiéndolos en el regalo perfecto para el protagonista del día.</p>
+      
+      <ul class="eventos-features">
+        <li><i class="fas fa-check-circle"></i> <strong>Precio:</strong> Desde 25,00 €.</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Medidas:</strong> 25 x 25 cm.</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Totalmente personalizado:</strong> Incluye oración, nombre y fecha.</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Ideal para:</strong> Bautizos y Primeras Comuniones.</li>
+      </ul>
+      
+      <a href="https://wa.me/34614591836?text=¡Hola!%20Me%20gustaría%20encargar%20un%20cuadro%20personalizado%20para%20un%20bautizo/comunión." class="btn-eventos-wa">
+        <i class="fab fa-whatsapp"></i> Personalizar mi cuadro
+      </a>
+    </div>
+
+    <!-- Carrusel de imágenes -->
+    <div class="eventos-intro-image carousel-container" id="carousel-cuadros-fe">
+      <div class="carousel-inner">
+		<img src="Virgenes/CuadroBaturizoComunionVirgen.png" class="active img-rounded-shadow" alt="Cuadro Recordatorio Comuniones y bautizo" loading="lazy">
+        <img src="Virgenes/CuadroVirgen.png" alt="Cuadro Virgen personalizado para bautizo y comunión" loading="lazy">
+	  </div>
+      <button class="nav-btn prev" onclick="cambiarSlide('carousel-cuadros-fe', -1)" aria-label="Anterior">&#10094;</button>
+      <button class="nav-btn next" onclick="cambiarSlide('carousel-cuadros-fe', 1)" aria-label="Siguiente">&#10095;</button>
+    </div>
+  </div>
+
+</section> 
+
+
+<!-- SECCIÓN: DÍA DE LA MADRE -->
+<section id="dia-madre" aria-label="Día de la Madre" class="section-padding">
+  <div class="section-header">
+    <span class="eventos-eyebrow-small">✦ &nbsp; ✦ &nbsp; ✦</span>
     <h2 class="category-title">Regalos para Mamá</h2>
     <p class="section-subtitle">Detalles únicos hechos con el corazón</p>
   </div>
 
-  <div class="especiales-grid">
-
-    <!-- FICHA: Detalle Especial para Mamá -->
-    <div class="file-card especial-card especial-card--compact">
-      <img src="DecaracionMama.jpeg" alt="Detalle especial artesanal para mamá con bandeja de yeso y vela" loading="lazy">
-      <div class="file-info especial-info">
-        <span class="eventos-eyebrow-small">Artesanía exclusiva</span>
-        <h4>Detalle Especial para Mamá</h4>
-        <p class="product-description">Sorprende con una pieza artesanal exclusiva. Un recuerdo diseñado para emocionar, elaborado cuidadosamente en Madrid.</p>
-        <ul class="eventos-features">
-          <li>❤️ <strong>Artesanía exclusiva:</strong> Pieza única hecha a mano.</li>
-        </ul>
-        <a href="https://wa.me/34614591836?text=¡Hola!%20Me%20gustaría%20pedir%20el%20detalle%20especial%20para%20mamá." class="btn-eventos-wa">
-          <i class="fab fa-whatsapp"></i> Pedir este regalo
-        </a>
-      </div>
+  <div class="eventos-intro">    
+    
+    <!-- Información -->
+    <div class="eventos-intro-text">
+      <h3>Detalle Especial para Mamá</h3>
+      <p>Sorprende con una pieza artesanal exclusiva. Un recuerdo diseñado para emocionar, elaborado cuidadosamente en Madrid.</p>
+      
+      <ul class="eventos-features">
+        <li><i class="fas fa-heart"></i> <strong>Artesanía exclusiva:</strong> Pieza única hecha a mano.</li>
+      </ul>
+      
+      <a href="https://wa.me/34614591836?text=¡Hola!%20Me%20interesa%20el%20detalle%20para%20el%20Día%20de%20la%20Madre." class="btn-primary">
+        <i class="fab fa-whatsapp"></i> Pedir este regalo
+      </a>
     </div>
-
+	
+	<!-- Imagen única sin carrusel -->
+    <div class="product-image-side">
+      <img src="DecaracionMama.jpeg" alt="Decoración especial para el Día de la Madre" loading="lazy" class="img-rounded-shadow">
+    </div>
   </div>
 </section>
+
+
     <!-- BANNER EVENTOS -->
     <div class="events-banner" aria-label="Eventos personalizados">
       <div class="events-banner-content">
-        <span class="events-eyebrow">¿Tenéis un evento a la vista?</span>
+        <span class="events-eyebrow">✦ &nbsp; ¿Tenéis un evento a la vista? &nbsp; ✦</span>
         <h2>Personalizamos cada detalle</h2>
         <p>Bodas, bautizos, comuniones y celebraciones. Creamos piezas únicas para que vuestros invitados se lleven un recuerdo especial.</p>
         <a href="https://wa.me/34614591836?text=¡Hola!%20Me%20interesa%20un%20presupuesto%20para%20los%20detalles%20de%20mi%20evento."
@@ -658,22 +675,26 @@
     <!-- FAQ -->
     <section id="faq" class="faq-section" aria-label="Preguntas frecuentes">
       <div class="section-header">
+        <span class="ornament">❧</span>
         <h2 class="category-title">Preguntas frecuentes</h2>
       </div>
       <div class="faq-list">
         <details class="faq-item">
           <summary>¿Por qué elegir velas de cera de soja en lugar de parafina?</summary>
-		  <p>Nuestras velas están elaboradas con cera de soja 100% de origen vegetal. Este material permite una combustión uniforme y una excelente difusión de los aromas, creando un ambiente cálido y agradable en tu hogar, ideal para disfrutar de tus momentos de calma.</p>
-          </details>
+          <p>La parafina es un derivado del petróleo que emite toxinas al quemarse. Nuestras velas están hechas con cera de soja 100% natural, ofreciendo una combustión limpia, sin humo negro ni disruptores endocrinos. Son totalmente seguras para tu hogar, niños y mascotas.</p>
+        </details>
         <details class="faq-item">
           <summary>¿Qué es el polvo cerámico con el que hacéis las figuras?</summary>
-          <p>Están hechas con un polvo cerámico de calidad premium. A diferencia del yeso corriente, este material nos permite conseguir un acabado súper sedoso, sin imperfecciones y mucho más resistente, ideal para que decoren tus rincones favoritos durante años.</p>
+          <p>Utilizamos polvo cerámico Raysin de Rayher, de calidad premium. A diferencia del yeso tradicional, este material nos permite lograr figuras ultrablancas, con un acabado suave, sedoso y mucho más resistente. Perfecto para decoración minimalista.</p>
         </details>
         <details class="faq-item">
           <summary>¿Hacéis detalles personalizados para bodas y eventos?</summary>
           <p>¡Por supuesto! Todas nuestras figuras se pueden hacer a gusto del cliente. Personalizamos bandejas con técnica decoupage y creamos ambientadores con la imagen o temática que necesites para tu boda, comunión o bautizo. Escríbenos por WhatsApp y daremos forma a tu idea.</p>
         </details>
-        
+        <details class="faq-item">
+          <summary>¿Hacéis envíos a toda España?</summary>
+          <p>Sí, enviamos a toda la península con embalaje cuidadoso para que cada pieza llegue perfecta. Consúltanos los plazos y costes de envío por WhatsApp o email.</p>
+        </details>
       </div>
     </section>
 
@@ -693,22 +714,20 @@
           <a href="#faq">Preguntas Frecuentes</a>
         </div>
         <div class="footer-contact">
-          <h4>Contacto y Catálogo</h4>
-          <a href="https://www.instagram.com/paufestudio" target="_blank" rel="noopener">
-            <i class="fab fa-instagram" aria-hidden="true"></i> Instagram: @paufestudio
+          <h4>Contacto</h4>
+          <a href="https://www.instagram.com/paufestudio" target="_blank">
+            <i class="fab fa-instagram" aria-hidden="true"></i> @paufestudio
           </a>
           <a href="mailto:paufestudio@gmail.com">
-            <i class="far fa-envelope" aria-hidden="true"></i> Email: paufestudio@gmail.com
+            <i class="far fa-envelope" aria-hidden="true"></i> paufestudio@gmail.com
           </a>
-          <a href="https://wa.me/34614591836?text=¡Hola!%20Me%20gustaría%20solicitar%20el%20catálogo%20completo%20de%20productos." target="_blank" rel="noopener">
-            <i class="fas fa-book-open" aria-hidden="true"></i> Solicitar Catálogo Completo
-          </a>
-          <a href="https://wa.me/34614591836" target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp: +34 614 59 18 36
+          <a href="https://wa.me/34614591836">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp
           </a>
         </div>
+      </div>
       <div class="footer-bottom">
-        <p>© 2026 Paufe Studio · Hecho con 🤍 en Madrid</p>
+        <p>© 2026 Paufe Studio · Hecho con 🤍 Paula y Feli</p>
       </div>
     </footer>
 
@@ -800,22 +819,34 @@
     });
 
     // ===== LIGHTBOX =====
+    // Clases que NUNCA abren lightbox (logos, nav, footer)
+    var EXCLUIR = ['.sidebar-menu', '.navbar', '.site-footer', '.sidebar-header', '.announcement-bar', '.hero-overlay'];
+
     document.addEventListener('click', function(e) {
       var img = e.target;
       if (img.tagName !== 'IMG') return;
+
+      // Salir si la imagen está en una zona excluida
+      for (var x = 0; x < EXCLUIR.length; x++) {
+        if (img.closest(EXCLUIR[x])) return;
+      }
+
+      // Aceptar imágenes dentro de tarjetas de producto O bloques de eventos/lateral
+      var enZonaProducto = img.closest('.file-card')
+                        || img.closest('.eventos-intro')
+                        || img.closest('.product-image-side')
+                        || img.closest('.carousel-container');
+
+      if (!enZonaProducto) return;
+
       var inCarousel = img.closest('.carousel-inner');
-      var inCard     = img.closest('.file-card');
-      var inSidebar  = img.closest('.sidebar-menu');
-      var inNavbar   = img.closest('.navbar');
-      var inFooter   = img.closest('.site-footer');
-      if (!inCard || inSidebar || inNavbar || inFooter) return;
-      if (!inCarousel) {
-        imagenesActuales = [img.src];
-        indiceLightbox   = 0;
-      } else {
+      if (inCarousel) {
         var imgs = Array.from(inCarousel.querySelectorAll('img'));
         imagenesActuales = imgs.map(function(i) { return i.src; });
         indiceLightbox   = Math.max(0, imagenesActuales.indexOf(img.src));
+      } else {
+        imagenesActuales = [img.src];
+        indiceLightbox   = 0;
       }
       mostrarLightbox();
       lightbox.classList.add('active');
